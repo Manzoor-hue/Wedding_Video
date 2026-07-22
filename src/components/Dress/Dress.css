@@ -1,0 +1,245 @@
+@import url("https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:wght@400;500;600&display=swap");
+
+/* ===================================== */
+
+.dress-section{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:clamp(70px,12vw,120px) 24px;
+
+}
+
+/* ===================================== */
+
+.dress-card{
+
+    position:relative;
+
+    width:860px;
+
+    height:700px;
+
+}
+
+/* ===================================== */
+
+.paper{
+
+    position:absolute;
+
+    width:720px;
+
+    left:70px;
+
+    top:30px;
+
+    z-index:1;
+
+}
+
+/* ===================================== */
+
+.paper-content{
+
+    position:absolute;
+
+    left:140px;
+
+    top:90px;
+
+    width:580px;
+
+    height:430px;
+
+    z-index:10;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:flex-start;
+
+    gap:65px;
+
+}
+
+/* ===================================== */
+
+.dress-block,
+.gift-block{
+
+    width:300px;
+
+    text-align:center;
+
+}
+
+/* ===================================== */
+
+.flower-top{
+
+    position:absolute;
+
+    width:235px;
+
+    right:70px;
+
+    top:-5px;
+
+    z-index:20;
+
+}
+
+/* ===================================== */
+
+.flower-bottom{
+
+    position:absolute;
+
+    width:210px;
+
+    left:140px;
+
+    bottom:275px;
+
+    transform:rotate(-90deg);
+
+    transform-origin:center;
+
+    z-index:20;
+
+}
+
+/* ===================================== */
+
+.dress-block h2,
+.gift-block h2{
+
+    margin:0 0 1px;
+
+    font-family:"Alex Brush",cursive;
+
+    font-size:48px;
+
+    font-weight:400;
+
+    color:#c89b38;
+
+}
+
+/* ===================================== */
+
+.dress-block p,
+.gift-block p{
+
+    margin:0 0 -50px;
+
+    width:280px;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:18px;
+
+    line-height:1.55;
+
+    color:#6a5147;
+
+}
+
+/* ===================================== */
+
+.dress-block span{
+
+    color:#8b2434;
+
+    font-weight:700;
+
+}
+
+/* ===================================== */
+
+@media (max-width:768px){
+
+.dress-card{
+
+width:100%;
+
+height:auto;
+
+aspect-ratio:860/700;
+
+}
+
+.paper{
+
+width:92%;
+
+left:4%;
+
+top:5%;
+
+}
+
+.paper-content{
+
+left:15%;
+
+top:12%;
+
+width:70%;
+
+height:72%;
+
+gap:45px;
+
+}
+
+.flower-top{
+
+width:170px;
+
+right:0;
+
+}
+
+.flower-bottom{
+
+width:150px;
+
+left:0;
+
+bottom:30px;
+
+}
+
+.dress-block,
+.gift-block{
+
+width:100%;
+
+}
+
+.dress-block h2,
+.gift-block h2{
+
+font-size:34px;
+
+}
+
+.dress-block p,
+.gift-block p{
+
+width:220px;
+
+font-size:15px;
+
+}
+
+}

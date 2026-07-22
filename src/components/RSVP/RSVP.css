@@ -1,0 +1,278 @@
+@import url("https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:wght@400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap');
+
+/* ==========================================================
+   RSVP SECTION
+========================================================== */
+
+.rsvp-section{
+
+    position:relative;
+
+    width:100%;
+
+    padding:110px 20px 140px;
+
+    text-align:center;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+/* ==========================================================
+   TITLE
+========================================================== */
+
+.rsvp-title{
+
+    margin:0;
+
+    font-family:"Alex Brush",cursive;
+
+    font-size:72px;
+
+    font-weight:400;
+
+    color:#c79a39;
+
+    line-height:1;
+
+}
+
+/* ==========================================================
+   DESCRIPTION
+========================================================== */
+
+.rsvp-text{
+
+    width:580px;
+
+    max-width:92%;
+
+    margin:28px auto 45px;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:24px;
+
+    line-height:1.8;
+
+    color:#6b5548;
+
+}
+
+/* ==========================================================
+   RSVP SEAL
+========================================================== */
+
+.seal-button{
+
+    background:transparent;
+
+    border:none;
+
+    outline:none;
+
+    appearance:none;
+
+    -webkit-appearance:none;
+
+    cursor:pointer;
+
+    padding:0;
+
+    margin:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.seal-button img{
+
+    width:180px;
+
+    display:block;
+
+    transition:.45s ease;
+
+    filter:drop-shadow(0 10px 18px rgba(0,0,0,.18));
+
+}
+
+.seal-button:hover img{
+
+    transform:translateY(-6px) scale(1.05);
+
+}
+
+/* ==========================================================
+   CLICK TO OPEN
+========================================================== */
+
+.click-open{
+
+    margin-top:18px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.click-open span{
+
+    font-size:34px;
+
+    color:#c79a39;
+
+    animation:bounce 1.8s infinite;
+
+    line-height:1;
+
+}
+
+.click-open p{
+
+    margin:6px 0 0;
+
+    font-family:"Alex Brush",cursive;
+
+    font-size:34px;
+
+    color:#c79a39;
+
+}
+
+/* ==========================================================
+   FOOTER TEXT
+========================================================== */
+
+.hope-text{
+
+    margin-top:70px;
+
+    margin-bottom:0;
+
+    font-family:"Alex Brush",cursive;
+
+    font-size:58px;
+
+    font-weight:400;
+
+    color:#c79a39;
+
+}
+
+.couple-name{
+
+    margin-top:18px;
+
+    font-family: "Pinyon Script", cursive;
+
+    font-size:42px;
+
+    font-weight:500;
+
+    color:#866858;
+
+}
+
+/* ==========================================================
+   ANIMATION
+========================================================== */
+
+@keyframes bounce{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-10px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:768px){
+
+.rsvp-section{
+
+padding:90px 18px 110px;
+
+}
+
+.rsvp-title{
+
+font-size:52px;
+
+}
+
+.rsvp-text{
+
+font-size:20px;
+
+line-height:1.7;
+
+}
+
+.seal-button img{
+
+width:145px;
+
+}
+
+.click-open span{
+
+font-size:28px;
+
+}
+
+.click-open p{
+
+font-size:26px;
+
+}
+
+.hope-text{
+
+font-size:42px;
+
+margin-top:55px;
+
+}
+
+.couple-name{
+
+font-size:30px;
+
+}
+
+}

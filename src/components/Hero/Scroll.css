@@ -1,0 +1,165 @@
+.scrollIndicator{
+
+position:absolute;
+
+left:50%;
+
+bottom:40px;
+
+transform:translateX(-50%);
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+z-index:120;
+
+animation:
+fadeScroll 2s ease 4s forwards,
+floating 2.5s ease-in-out infinite;
+
+opacity:0;
+
+}
+
+/* -------------------------- */
+
+.scrollLine{
+
+width:90px;
+
+height:1px;
+
+background:
+linear-gradient(
+90deg,
+transparent,
+#c79b39,
+transparent
+);
+
+margin-bottom:18px;
+
+}
+
+/* -------------------------- */
+
+.scrollIndicator p{
+
+margin:0;
+
+font-size:15px;
+
+letter-spacing:4px;
+
+text-transform:uppercase;
+
+color:#b68d3d;
+
+font-family:"Cormorant Garamond",serif;
+
+margin-bottom:18px;
+
+}
+
+/* -------------------------- */
+
+.mouse{
+
+width:28px;
+
+height:48px;
+
+border:2px solid rgba(199,155,57,.7);
+
+border-radius:30px;
+
+display:flex;
+
+justify-content:center;
+
+padding-top:6px;
+
+}
+
+/* -------------------------- */
+
+.wheel{
+
+width:4px;
+
+height:10px;
+
+background:#c79b39;
+
+border-radius:10px;
+
+animation:wheel 2s infinite;
+
+}
+
+/* -------------------------- */
+
+@keyframes wheel{
+
+0%{
+
+transform:translateY(0);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(16px);
+
+opacity:0;
+
+}
+
+}
+
+/* -------------------------- */
+
+@keyframes floating{
+
+0%{
+
+transform:
+translateX(-50%)
+translateY(0);
+
+}
+
+50%{
+
+transform:
+translateX(-50%)
+translateY(6px);
+
+}
+
+100%{
+
+transform:
+translateX(-50%)
+translateY(0);
+
+}
+
+}
+
+/* -------------------------- */
+
+@keyframes fadeScroll{
+
+to{
+
+opacity:1;
+
+}
+
+}

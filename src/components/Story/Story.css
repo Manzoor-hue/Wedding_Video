@@ -1,0 +1,246 @@
+.story{
+
+    position:relative;
+
+    padding:140px 24px;
+
+    background:#fbf6ed;
+
+    overflow:hidden;
+
+}
+
+/* ------------------------------- */
+
+.storyContainer{
+
+    max-width:900px;
+
+    margin:auto;
+
+    text-align:center;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* ------------------------------- */
+
+.story h2{
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:52px;
+
+    font-weight:600;
+
+    color:#b58b35;
+
+    margin-bottom:25px;
+
+    letter-spacing:.5px;
+
+}
+
+/* ------------------------------- */
+
+.divider{
+
+    display:block;
+
+    width:180px;
+
+    margin:0 auto 60px;
+
+}
+
+/* ===============================
+   FLIP CARD
+================================ */
+
+.photoFrame{
+
+    width:450px;
+
+    height:600px;
+
+    margin:auto;
+
+    perspective:1800px;
+
+    cursor:pointer;
+
+}
+
+/* ------------------------------- */
+
+.flipCard{
+
+    position:relative;
+
+    width:100%;
+
+    height:100%;
+
+    transition:transform .9s cubic-bezier(.23,1,.32,1);
+
+    transform-style:preserve-3d;
+
+}
+
+/* ------------------------------- */
+
+.photoFrame.flip .flipCard{
+
+    transform:rotateY(180deg);
+
+}
+
+/* ------------------------------- */
+
+.front,
+.back{
+
+    position:absolute;
+
+    inset:0;
+
+    padding:10px;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    background:white;
+
+    backface-visibility:hidden;
+
+    box-shadow:
+
+        0 30px 70px rgba(0,0,0,.16);
+
+}
+
+/* ------------------------------- */
+
+.back{
+
+    transform:rotateY(180deg);
+
+}
+
+/* ------------------------------- */
+
+.storyPhoto{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    border-radius:22px;
+
+    display:block;
+
+}
+
+/* ===============================
+   QUOTE
+================================ */
+
+.quote{
+
+    margin-top:50px;
+
+    font-size:30px;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-style:italic;
+
+    color:#9a7a35;
+
+    line-height:1.7;
+
+}
+
+/* ===============================
+   STORY TEXT
+================================ */
+
+.storyText{
+
+    margin-top:35px;
+
+    max-width:700px;
+
+    margin-left:auto;
+
+    margin-right:auto;
+
+    font-size:18px;
+
+    line-height:2;
+
+    color:#666;
+
+}
+
+/* ===============================
+   HOVER EFFECT
+================================ */
+
+.photoFrame:hover{
+
+    transform:translateY(-6px);
+
+    transition:.4s ease;
+
+}
+
+/* ===============================
+   MOBILE
+================================ */
+
+@media (max-width:768px){
+
+.story{
+
+    padding:90px 20px;
+
+}
+
+.story h2{
+
+    font-size:40px;
+
+}
+
+.photoFrame{
+
+    width:100%;
+
+    max-width:330px;
+
+    height:450px;
+
+}
+
+.quote{
+
+    font-size:24px;
+
+}
+
+.storyText{
+
+    font-size:16px;
+
+    line-height:1.8;
+
+}
+
+}

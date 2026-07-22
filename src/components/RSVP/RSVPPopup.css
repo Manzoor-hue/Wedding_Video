@@ -1,0 +1,465 @@
+@import url("https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:wght@400;500;600;700&display=swap");
+
+/* ==========================================================
+   OVERLAY
+========================================================== */
+
+.popup-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(0,0,0,.45);
+
+    backdrop-filter:blur(10px);
+
+    z-index:9999;
+
+    animation:fadeIn .35s ease;
+
+    padding:30px;
+
+}
+
+/* ==========================================================
+   CARD
+========================================================== */
+
+.popup-card{
+
+    position:relative;
+
+    width:460px;
+
+    max-width:100%;
+
+    max-height:90vh;
+
+    overflow-y:auto;
+
+    background:#fdf9f3;
+
+    border-radius:24px;
+
+    padding:35px 34px;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.18),
+        0 0 25px rgba(199,154,57,.15);
+
+    animation:popup .35s ease;
+
+    scrollbar-width:thin;
+
+    scrollbar-color:#c79a39 transparent;
+
+}
+
+.popup-card::-webkit-scrollbar{
+
+    width:7px;
+
+}
+
+.popup-card::-webkit-scrollbar-thumb{
+
+    background:#c79a39;
+
+    border-radius:20px;
+
+}
+
+/* ==========================================================
+   CLOSE BUTTON
+========================================================== */
+
+.popup-close{
+
+    position:absolute;
+
+    top:18px;
+
+    right:20px;
+
+    width:36px;
+
+    height:36px;
+
+    border:none;
+
+    background:transparent;
+
+    color:#8d2435;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+.popup-close:hover{
+
+    transform:rotate(90deg);
+
+}
+
+/* ==========================================================
+   TITLE
+========================================================== */
+
+.popup-card h2{
+
+    margin:0;
+
+    text-align:center;
+
+    font-family:"Alex Brush",cursive;
+
+    font-size:48px;
+
+    font-weight:400;
+
+    color:#c79a39;
+
+}
+
+.popup-subtitle{
+
+    margin:10px 0 28px;
+
+    text-align:center;
+
+    font-family:"Cormorant Garamond",serif;
+
+    color:#6b5548;
+
+    font-size:20px;
+
+    line-height:1.6;
+
+}
+
+/* ==========================================================
+   FORM
+========================================================== */
+
+.rsvp-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+/* ==========================================================
+   LABEL
+========================================================== */
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.form-group label{
+
+    margin-bottom:8px;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    color:#7a5d4d;
+
+}
+
+/* ==========================================================
+   INPUT
+========================================================== */
+
+.form-group input,
+
+.form-group select{
+
+    width:100%;
+
+    padding:12px 14px;
+
+    border:1px solid #dbc8af;
+
+    border-radius:12px;
+
+    background:#fff;
+
+    font-size:16px;
+
+    font-family:"Cormorant Garamond",serif;
+
+    color:#5b4438;
+
+    outline:none;
+
+    transition:.25s;
+
+    box-sizing:border-box;
+
+}
+
+.form-group input:focus,
+
+.form-group select:focus{
+
+    border-color:#c79a39;
+
+    box-shadow:0 0 0 3px rgba(199,154,57,.15);
+
+}
+
+/* ==========================================================
+   RADIO
+========================================================== */
+
+.radio-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.radio-group label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin:0;
+
+    font-size:17px;
+
+    font-weight:500;
+
+    cursor:pointer;
+
+}
+
+.radio-group input{
+
+    accent-color:#8d2435;
+
+    transform:scale(1.15);
+
+}
+
+/* ==========================================================
+   BUTTON
+========================================================== */
+
+.submit-btn{
+
+    margin-top:10px;
+
+    border:none;
+
+    border-radius:40px;
+
+    padding:15px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:18px;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-weight:600;
+
+    background:linear-gradient(135deg,#8d2435,#5a0f1b);
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:.35s;
+
+}
+
+.submit-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 24px rgba(141,36,53,.25);
+
+}
+
+.submit-btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-100%;
+
+    width:80px;
+
+    height:100%;
+
+    background:linear-gradient(
+
+        90deg,
+
+        transparent,
+
+        rgba(255,255,255,.4),
+
+        transparent
+
+    );
+
+}
+
+.submit-btn:hover::before{
+
+    animation:shine .8s forwards;
+
+}
+
+/* ==========================================================
+   ANIMATION
+========================================================== */
+
+@keyframes popup{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(35px) scale(.92);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0) scale(1);
+
+    }
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+@keyframes shine{
+
+    from{
+
+        left:-100px;
+
+    }
+
+    to{
+
+        left:120%;
+
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media(max-width:768px){
+
+.popup-overlay{
+
+padding:18px;
+
+}
+
+.popup-card{
+
+padding:26px 22px;
+
+width:100%;
+
+max-height:88vh;
+
+}
+
+.popup-card h2{
+
+font-size:40px;
+
+}
+
+.popup-subtitle{
+
+font-size:17px;
+
+margin-bottom:22px;
+
+}
+
+.form-group label{
+
+font-size:17px;
+
+}
+
+.form-group input,
+
+.form-group select{
+
+padding:11px 12px;
+
+font-size:15px;
+
+}
+
+.submit-btn{
+
+font-size:17px;
+
+padding:14px;
+
+}
+
+}

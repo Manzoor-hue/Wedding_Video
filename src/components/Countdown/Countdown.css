@@ -1,0 +1,304 @@
+@import url("https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:wght@400;500;600;700&display=swap");
+
+/* ==========================================================
+   COUNTDOWN SECTION
+========================================================== */
+
+.countdown{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:clamp(70px,12vw,140px) 24px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+}
+
+/* ==========================================================
+   PAPER BACKGROUND
+========================================================== */
+
+.countdown::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:58%;
+
+    transform:translate(-50%,-50%);
+
+    width:1100px;
+
+    height:520px;
+
+    background:url("/images/decorations/paper.webp")
+        center center/contain no-repeat;
+
+    pointer-events:none;
+
+    z-index:0;
+
+}
+
+/* ==========================================================
+   TITLE
+========================================================== */
+
+.countdown-title{
+
+    position:relative;
+
+    z-index:2;
+
+    margin:0 0 70px;
+
+    font-family:"Alex Brush",cursive;
+
+    font-size:48px;
+
+    font-weight:400;
+
+    color:#c79a39;
+
+    line-height:1.1;
+
+    text-shadow:
+        0 2px 12px rgba(199,154,57,.18);
+
+}
+
+/* ==========================================================
+   GRID
+========================================================== */
+
+.countdown-grid{
+
+    position:relative;
+
+    z-index:2;
+
+    display:flex;
+
+    align-items:flex-start;
+
+    justify-content:center;
+
+    gap:30px;
+
+    flex-wrap:wrap;
+
+}
+
+/* ==========================================================
+   BOX
+========================================================== */
+
+.count-box{
+
+    width:120px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+/* ==========================================================
+   NUMBER
+========================================================== */
+
+.count-box span{
+
+    display:block;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:38px;
+
+    font-weight:700;
+
+    line-height:1;
+
+    color:#b88935;
+
+    letter-spacing:2px;
+
+    transition:
+        opacity .28s ease,
+        transform .28s ease;
+
+    text-shadow:
+        0 2px 8px rgba(184,137,53,.18),
+        0 0 18px rgba(184,137,53,.10);
+
+    animation:numberGlow 3s ease-in-out infinite;
+
+}
+
+/* ==========================================================
+   SECONDS FADE
+========================================================== */
+
+.fade-number{
+
+    opacity:0;
+
+    transform:translateY(8px);
+
+}
+
+/* ==========================================================
+   LABEL
+========================================================== */
+
+.count-box small{
+
+    margin-top:18px;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:22px;
+
+    font-weight:500;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    color:#96714f;
+
+}
+
+/* ==========================================================
+   COLON
+========================================================== */
+
+.separator{
+
+    position:relative;
+
+    top:8px;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:72px;
+
+    font-weight:600;
+
+    color:#d5b57a;
+
+}
+
+/* ==========================================================
+   GLOW
+========================================================== */
+
+@keyframes numberGlow{
+
+0%{
+
+text-shadow:
+0 2px 8px rgba(184,137,53,.15);
+
+}
+
+50%{
+
+text-shadow:
+0 4px 18px rgba(184,137,53,.30);
+
+}
+
+100%{
+
+text-shadow:
+0 2px 8px rgba(184,137,53,.15);
+
+}
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:768px){
+
+.countdown{
+
+padding:90px 20px;
+
+}
+
+.countdown::before{
+
+width:430px;
+
+height:330px;
+
+top:60%;
+
+}
+
+.countdown-title{
+
+font-size:48px;
+
+margin-bottom:45px;
+
+}
+
+.countdown-grid{
+
+gap:16px;
+
+}
+
+.count-box{
+
+width:70px;
+
+}
+
+.count-box span{
+
+font-size:46px;
+
+}
+
+.count-box small{
+
+font-size:14px;
+
+margin-top:10px;
+
+letter-spacing:1px;
+
+}
+
+.separator{
+
+font-size:40px;
+
+top:2px;
+
+}
+
+}

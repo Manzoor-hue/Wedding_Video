@@ -1,0 +1,449 @@
+/* ==========================================
+   PARTICLE BURST
+========================================== */
+
+.particle-burst{
+
+    position:absolute;
+
+    inset:0;
+
+    overflow:visible;
+
+    pointer-events:none;
+
+    z-index:50;
+
+}
+
+/* ==========================================
+   PARTICLE
+========================================== */
+
+.particle{
+
+    position:absolute;
+    z-index:60;
+    
+    left:50%;
+
+    top:58%;
+
+    width:var(--size);
+
+    height:calc(var(--size) * .35);
+
+    background:var(--color);
+
+    border-radius:2px;
+
+    transform:translate(-50%,-50%);
+
+    animation:burst var(--duration) ease-out forwards;
+
+    animation-delay:var(--delay);
+
+    box-shadow:
+
+        0 0 6px rgba(255,255,255,.35),
+
+        0 0 12px rgba(255,215,0,.25);
+
+}
+
+/* ==========================================
+   HEART SHAPES
+========================================== */
+
+.particle:nth-child(5n){
+
+    width:10px;
+
+    height:10px;
+
+    background:#E91E63;
+
+    clip-path:path("M5 9 C5 9 0 6 0 3 C0 1.5 1.5 0 3 0 C4 0 4.7 .8 5 1.8 C5.3 .8 6 0 7 0 C8.5 0 10 1.5 10 3 C10 6 5 9 5 9");
+
+}
+
+/* ==========================================
+   GOLD CIRCLES
+========================================== */
+
+.particle:nth-child(4n){
+
+    border-radius:50%;
+
+    width:8px;
+
+    height:8px;
+
+}
+
+/* ==========================================
+   LONG CONFETTI
+========================================== */
+
+.particle:nth-child(3n){
+
+    width:3px;
+
+    height:14px;
+
+    border-radius:1px;
+
+}
+
+/* ==========================================
+   BURST
+========================================== */
+
+@keyframes burst{
+
+0%{
+
+    opacity:0;
+
+    transform:
+
+        translate(-50%,-50%)
+
+        scale(.2)
+
+        rotate(0deg);
+
+}
+
+10%{
+
+    opacity:1;
+
+}
+
+65%{
+
+    opacity:1;
+
+}
+
+100%{
+
+    opacity:0;
+
+    transform:
+
+        translate(
+
+            calc(-50% + var(--x)),
+
+            calc(-50% + var(--y))
+
+        )
+
+        rotate(var(--r))
+
+        scale(1);
+
+}
+
+}
+
+/* ==========================================
+   FALLING EFFECT
+========================================== */
+
+.particle::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    animation:fall var(--duration) linear forwards;
+
+}
+
+@keyframes fall{
+
+0%{
+
+    transform:translateY(0);
+
+}
+
+100%{
+
+    transform:translateY(90px);
+
+}
+
+}
+
+/* ==========================================
+   GOLD SHIMMER
+========================================== */
+
+.particle{
+
+    background-image:
+
+    linear-gradient(
+
+        135deg,
+
+        rgba(255,255,255,.8),
+
+        rgba(255,255,255,0)
+
+    );
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:768px){
+
+.particle{
+
+    transform:translate(-50%,-50%) scale(.85);
+
+}
+
+}
+/* ===================================
+   PARTY POPPERS
+=================================== */
+
+.popper{
+
+    position:absolute;
+
+    width:26px;
+
+    height:70px;
+
+    background:linear-gradient(
+        to bottom,
+        #f7d87d,
+        #b77a15
+    );
+
+    border-radius:8px;
+
+    top:72%;
+
+    z-index:1;
+
+    box-shadow:0 6px 16px rgba(0,0,0,.18);
+
+}
+
+.popper.left{
+
+    left:18%;
+
+    transform:rotate(-35deg);
+
+}
+
+.popper.right{
+
+    right:18%;
+
+    transform:rotate(35deg);
+
+}
+
+/* ===================================
+   ROSE PETALS
+=================================== */
+
+.petal{
+
+    width:14px;
+
+    height:18px;
+
+    background:#d64b73;
+
+    border-radius:60% 60% 60% 0;
+
+    transform-origin:center;
+
+}
+
+/* ===================================
+   SPARKLES
+=================================== */
+
+.sparkle{
+
+    width:8px;
+
+    height:8px;
+
+    background:#fff;
+
+    border-radius:50%;
+
+    box-shadow:
+
+        0 0 12px #fff,
+
+        0 0 20px gold;
+
+}
+
+.sparkle::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:50%;
+
+    width:16px;
+
+    height:2px;
+
+    background:white;
+
+    transform:translate(-50%,-50%);
+
+}
+
+.sparkle::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:50%;
+
+    width:2px;
+
+    height:16px;
+
+    background:white;
+
+    transform:translate(-50%,-50%);
+
+}
+
+/* ===================================
+   GOLD CIRCLES
+=================================== */
+
+.circle{
+
+    border-radius:50%;
+
+}
+
+/* ===================================
+   POPPER SMOKE
+=================================== */
+
+.popper::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:-12px;
+
+    width:18px;
+
+    height:18px;
+
+    border-radius:50%;
+
+    background:rgba(255,245,220,.8);
+
+    filter:blur(5px);
+
+    transform:translateX(-50%);
+
+    animation:smoke .8s ease-out forwards;
+
+}
+
+@keyframes smoke{
+
+0%{
+
+opacity:.9;
+
+transform:
+
+translateX(-50%)
+
+scale(.3);
+
+}
+
+100%{
+
+opacity:0;
+
+transform:
+
+translateX(-50%)
+
+translateY(-35px)
+
+scale(2.2);
+
+}
+
+}
+
+.heart{
+
+    animation:
+
+    burst var(--duration) ease-out forwards,
+
+    floatHeart 2.5s ease-in-out forwards;
+
+}
+
+@keyframes floatHeart{
+
+0%{
+
+filter:brightness(1);
+
+}
+
+50%{
+
+transform:
+
+translateY(-15px)
+
+rotate(12deg);
+
+}
+
+100%{
+
+transform:
+
+translateY(15px)
+
+rotate(-12deg);
+
+}
+
+}

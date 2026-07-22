@@ -1,0 +1,98 @@
+.coupleContainer{
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:70px;
+
+    transform:translateX(-50%);
+
+    z-index:90;
+
+}
+
+/* Card */
+
+.photoFrame{
+
+    width:270px;
+
+    height:360px;
+
+    perspective:1400px;
+
+    cursor:pointer;
+
+}
+
+/* Flip */
+
+.flipInner{
+
+    position:relative;
+
+    width:100%;
+
+    height:100%;
+
+    transition:transform .9s cubic-bezier(.25,.8,.25,1);
+
+    transform-style:preserve-3d;
+
+}
+
+/* Rotate */
+
+.photoFrame.flipped .flipInner{
+
+    transform:rotateY(180deg);
+
+}
+
+/* Two Faces */
+
+.front,
+.back{
+
+    position:absolute;
+
+    inset:0;
+
+    backface-visibility:hidden;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    background:white;
+
+    padding:10px;
+
+    box-shadow:
+
+        0 25px 60px rgba(0,0,0,.18);
+
+}
+
+/* Back Face */
+
+.back{
+
+    transform:rotateY(180deg);
+
+}
+
+/* Images */
+
+.photo{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    border-radius:18px;
+
+}

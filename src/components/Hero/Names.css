@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Italianno&display=swap");
+
+.heroContent{
+
+position:absolute;
+
+top:10%;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:100%;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+z-index:100;
+
+}
+
+/* ---------------------- */
+
+.bismillah{
+
+width:185px;
+
+margin-bottom:25px;
+
+}
+
+/* ---------------------- */
+
+.weddingDay{
+
+font-family:"Italianno",cursive;
+
+font-size:30px;
+
+font-weight:600;
+
+color:#b3882f;
+
+margin:0;
+
+letter-spacing:1px;
+
+}
+
+/* ---------------------- */
+
+.date{
+
+font-family:"Italianno",cursive;
+
+font-size:26px;
+
+color:#7a6645;
+
+margin-top:8px;
+
+margin-bottom:35px;
+
+}
+
+/* ---------------------- */
+
+.coupleNames{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+font-family:"Italianno",cursive;
+
+font-size:62px;
+
+line-height:1;
+
+color:#b3882f;
+
+text-shadow:
+0 0 15px rgba(255,255,255,.35);
+
+margin:0;
+
+}
+
+.coupleNames span{
+
+font-size:34px;
+
+margin:12px 0;
+
+}
+
+/* ---------------------- */
+/* CINEMATIC REVEAL */
+/* ---------------------- */
+
+.reveal{
+
+opacity:0;
+
+transform:translateY(35px);
+
+animation:fadeReveal 1.2s forwards;
+
+}
+
+.reveal1{animation-delay:.5s;}
+.reveal2{animation-delay:1s;}
+.reveal3{animation-delay:1.5s;}
+.reveal4{animation-delay:2s;}
+.reveal5{animation-delay:2.5s;}
+.reveal6{animation-delay:3s;}
+
+@keyframes fadeReveal{
+
+0%{
+
+opacity:0;
+
+transform:
+translateY(35px);
+
+filter:blur(8px);
+
+}
+
+100%{
+
+opacity:1;
+
+transform:
+translateY(0);
+
+filter:blur(0);
+
+}
+
+}
