@@ -1,34 +1,38 @@
-@import url("https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap");
-
-/* ==========================================================
-   SCRATCH SECTION
-========================================================== */
+/* ===========================
+   SECTION
+=========================== */
 
 .scratch-section{
 
     position:relative;
 
-    padding:clamp(70px,12vw,120px) 24px;
+    overflow:hidden;
 
     text-align:center;
 
-    overflow:hidden;
+    padding:140px 20px;
+
+    background:
+    radial-gradient(circle at top,
+    #fffdf8 0%,
+    #fdf8ef 45%,
+    #f8f2e8 100%);
 
 }
 
 .scratch-title{
 
-    font-family:"Alex Brush",cursive;
+    margin:0;
 
-    font-size:clamp(48px,6vw,72px);
+    color:#9b7326;
 
-    color:#bc8b33;
+    font-family:"Cormorant Garamond",serif;
 
-    margin-bottom:18px;
+    font-size:clamp(2.4rem,5vw,3.8rem);
 
-    text-shadow:0 2px 8px rgba(188,139,51,.18);
+    font-weight:600;
 
-    transition:.5s;
+    letter-spacing:.08em;
 
 }
 
@@ -42,11 +46,11 @@
 
     gap:18px;
 
-    margin-bottom:45px;
+    margin:24px auto 70px;
 
-    color:#bc8b33;
+    color:#c8a23d;
 
-    font-size:18px;
+    font-size:20px;
 
 }
 
@@ -56,18 +60,18 @@
 
     height:1px;
 
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(188,139,51,.65),
-        transparent
-    );
+    background:
+    linear-gradient(
+    to right,
+    transparent,
+    #d4af37,
+    transparent);
 
 }
 
-/* ==========================================================
+/* ===========================
    HEART WRAPPER
-========================================================== */
+=========================== */
 
 .scratch-heart{
 
@@ -77,286 +81,74 @@
 
     align-items:center;
 
-    perspective:1800px;
-
 }
 
-.scratch-card{
+.heart-wrapper{
 
     position:relative;
 
     width:320px;
+    height:300px;
 
-    aspect-ratio:320/300;
+    margin:0 auto;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+/* ===========================
+   SHADOW
+=========================== */
+
+.heart-shadow{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:260px;
+    height:240px;
+
+    transform:translate(-50%,-40%);
+
+    filter:blur(22px);
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(0,0,0,.22),
+            transparent 72%
+        );
+
+    z-index:0;
+
+}
+
+/* ===========================
+   HEART CLIP
+=========================== */
+
+.heart-clip{
+
+    position:relative;
+
+    width:260px;
+    height:240px;
 
     overflow:hidden;
 
-    clip-path:path("M160 280 C160 280 20 190 20 95 C20 40 68 20 104 20 C132 20 152 44 160 74 C168 44 188 20 216 20 C252 20 300 40 300 95 C300 190 160 280 160 280");
+    clip-path:url(#royal-heart);
 
-    background:
-        radial-gradient(
-            circle at top,
-            #fffdf9 0%,
-            #f8f1e5 72%,
-            #efe2cf 100%
-        );
-
-    box-shadow:
-        0 22px 55px rgba(0,0,0,.16),
-        0 0 35px rgba(212,175,55,.14);
-
-    transition:
-        transform .7s ease,
-        box-shadow .7s ease,
-        filter .7s ease;
+    background:#fffaf2;
 
 }
 
-/* ==========================================================
-   PAPER TEXTURE
-========================================================== */
-
-.scratch-card::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-
-        radial-gradient(rgba(255,255,255,.5) 1px,transparent 1px);
-
-    background-size:12px 12px;
-
-    opacity:.18;
-
-    z-index:1;
-
-    pointer-events:none;
-
-}
-
-/* ==========================================================
-   SHIMMER
-========================================================== */
-
-.scratch-card::after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:-45%;
-
-    background:
-
-        linear-gradient(
-
-            120deg,
-
-            transparent 25%,
-
-            rgba(255,255,255,.85) 50%,
-
-            transparent 75%
-
-        );
-
-    transform:rotate(18deg);
-
-    opacity:0;
-
-    z-index:5;
-
-    pointer-events:none;
-
-}
-
-.scratch-card.revealed::after{
-
-    opacity:1;
-
-    animation:heartShimmer 3.2s linear infinite;
-
-}
-
-@keyframes heartShimmer{
-
-0%{
-
-transform:
-rotate(18deg)
-translateX(-180%);
-
-}
-
-100%{
-
-transform:
-rotate(18deg)
-translateX(180%);
-
-}
-
-}
-
-/* ==========================================================
-   REVEAL
-========================================================== */
-
-.scratch-card.revealed{
-
-    transform:scale(1.04);
-
-    box-shadow:
-
-        0 30px 70px rgba(0,0,0,.18),
-
-        0 0 45px rgba(212,175,55,.28);
-
-}
-
-/* ==========================================================
-   SVG GOLD BORDER
-========================================================== */
-
-.gold-border{
-
-    position:absolute;
-
-    inset:0;
-
-    width:100%;
-
-    height:100%;
-
-    z-index:120;
-
-    pointer-events:none;
-
-    overflow:visible;
-
-}
-
-.gold-border path{
-
-    fill:none;
-
-    stroke:#D4AF37;
-
-    stroke-width:4;
-
-    stroke-linecap:round;
-
-    stroke-linejoin:round;
-
-    vector-effect:non-scaling-stroke;
-
-    filter:
-
-        drop-shadow(0 0 4px rgba(212,175,55,.8))
-
-        drop-shadow(0 0 10px rgba(212,175,55,.45));
-
-    animation:goldGlow 2.6s ease-in-out infinite alternate;
-
-}
-
-@keyframes goldGlow{
-
-from{
-
-stroke:#c89418;
-
-filter:
-
-drop-shadow(0 0 4px rgba(212,175,55,.45))
-
-drop-shadow(0 0 8px rgba(212,175,55,.25));
-
-}
-
-to{
-
-stroke:#ffe28a;
-
-filter:
-
-drop-shadow(0 0 8px rgba(255,225,120,.95))
-
-drop-shadow(0 0 18px rgba(255,225,120,.6));
-
-}
-
-}
-
-/* ==========================================================
-   FLASH
-========================================================== */
-
-.flash-burst{
-
-    position:absolute;
-
-    inset:0;
-
-    margin:auto;
-
-    width:30px;
-
-    height:30px;
-
-    border-radius:50%;
-
-    background:
-
-        radial-gradient(
-
-            circle,
-
-            rgba(255,255,255,1),
-
-            rgba(255,235,170,.9),
-
-            rgba(255,215,80,.45),
-
-            transparent 72%
-
-        );
-
-    pointer-events:none;
-
-    z-index:150;
-
-    animation:flashBurst .9s ease forwards;
-
-}
-
-@keyframes flashBurst{
-
-0%{
-
-opacity:1;
-
-transform:scale(.2);
-
-}
-
-100%{
-
-opacity:0;
-
-transform:scale(11);
-
-}
-
-}
-
-/* ==========================================================
+/* =========================== manzoor
    SCRATCH CANVAS
-========================================================== */
+=========================== */
 
 .scratch-canvas{
 
@@ -368,35 +160,23 @@ transform:scale(11);
 
     height:100%;
 
+    display:block;
+
     cursor:pointer;
 
-    touch-action:none;
-
-    z-index:80;
-
-    transition:opacity .8s ease;
+    z-index:5;
 
 }
 
-.scratch-card.revealed .scratch-canvas{
-
-    opacity:0;
-
-    pointer-events:none;
-
-}
-
-/* ==========================================================
-   CARD CONTENT
-========================================================== */
+/* ===========================
+   REVEAL CONTENT
+=========================== */
 
 .card-content{
 
     position:absolute;
 
     inset:0;
-
-    z-index:20;
 
     display:flex;
 
@@ -406,26 +186,17 @@ transform:scale(11);
 
     align-items:center;
 
-    text-align:center;
-
-    padding:38px 28px 46px;
-
-    gap:4px;
-
     opacity:0;
 
-    transform:scale(.88);
+    transition:.6s;
 
-    transition:
-        opacity .8s ease,
-        transform .8s ease;
+    z-index:2;
 
-    background:
-        radial-gradient(
-            circle at top,
-            rgba(255,255,255,.98),
-            rgba(248,241,229,.97)
-        );
+}
+
+.card-content.show{
+
+    opacity:1;
 
 }
 
@@ -435,64 +206,83 @@ transform:scale(11);
 
     transform:scale(1);
 
-    animation:contentReveal .9s ease;
+}
+
+/* ===========================
+   DATE
+=========================== */
+
+.reveal-date{
+
+    margin:0;
+
+    color:#9d7422;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:2.4rem;
+
+    font-weight:700;
+
+    letter-spacing:.05em;
 
 }
 
-@keyframes contentReveal{
+.reveal-day{
 
-0%{
+    margin:12px 0 4px;
 
-opacity:0;
+    color:#8f7b55;
 
-transform:
-scale(.9);
+    font-family:"Cinzel",serif;
 
-}
+    font-size:1rem;
 
-100%{
+    letter-spacing:.28em;
 
-opacity:1;
-
-transform:
-scale(1);
+    text-transform:uppercase;
 
 }
 
+.reveal-time{
+
+    margin:0;
+
+    color:#c49a38;
+
+    font-family:"Cinzel",serif;
+
+    font-size:1rem;
+
+    letter-spacing:.20em;
+
 }
 
-/* ==========================================================
-   GOLD FLOURISH
-========================================================== */
+/* ===========================
+   FLOURISH
+=========================== */
 
 .gold-top-flourish,
 .gold-bottom-flourish{
 
-    width:70px;
+    position:relative;
+
+    width:120px;
 
     height:2px;
 
-    position:relative;
+    margin:18px 0;
 
     background:
+
         linear-gradient(
-            90deg,
+            to right,
             transparent,
+            #d4af37,
+            #fff0b6,
             #d4af37,
             transparent
         );
-
-}
-
-.gold-top-flourish{
-
-    margin-bottom:14px;
-
-}
-
-.gold-bottom-flourish{
-
-    margin-top:16px;
 
 }
 
@@ -509,439 +299,257 @@ scale(1);
 
     transform:translate(-50%,-50%);
 
+    padding:0 10px;
+
+    background:#fffaf2;
+
     color:#d4af37;
 
     font-size:18px;
 
-    text-shadow:
-        0 0 8px rgba(212,175,55,.5);
+}
+/* ===========================
+   HEART BORDER
+=========================== */
+
+.heart-outline{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:260px;
+    height:240px;
+
+    transform:translate(-50%,-50%);
+
+    pointer-events:none;
+
+    z-index:8;
 
 }
 
-/* ==========================================================
-   DATE
-========================================================== */
+.heart-outline path{
 
-.reveal-date{
+    fill:none;
 
-    margin:0;
+    stroke:#c89b2a;
 
-    font-family:"Alex Brush",cursive;
+    stroke-width:1.2;
 
-    font-size:34px;
+    vector-effect:non-scaling-stroke;
 
-    line-height:1.05;
-
-    color:#b88935;
-
-    text-shadow:
-
-        0 2px 8px rgba(184,137,53,.18);
+    filter:drop-shadow(
+        0 2px 5px rgba(212,175,55,.35)
+    );
 
 }
 
-/* ==========================================================
-   DAY
-========================================================== */
+/* ===========================
+   EDGE VIGNETTE
+=========================== */
 
-.reveal-day{
+.heart-vignette{
 
-    margin:6px 0;
+    position:absolute;
 
-    font-family:"Cinzel",serif;
+    inset:0;
 
-    font-size:17px;
+    pointer-events:none;
 
-    font-weight:600;
+    z-index:6;
 
-    letter-spacing:3px;
+    background:
 
-    text-transform:uppercase;
+        radial-gradient(
 
-    color:#6d4d28;
+            rgba(0,0,0,0) 74%,
 
-}
+            rgba(0,0,0,.12) 86%,
 
-/* ==========================================================
-   TIME
-========================================================== */
+            rgba(0,0,0,.28) 100%
 
-.reveal-time{
+        );
 
-    margin-top:2px;
-
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:18px;
-
-    letter-spacing:2px;
-
-    color:#8f6c3c;
+    mix-blend-mode:multiply;
 
 }
 
-/* ==========================================================
-   SUBTLE GOLD GLOW
-========================================================== */
+/* ===========================
+   GOLD SHINE
+=========================== */
 
-.reveal-date,
-.reveal-day,
-.reveal-time{
+.heart-highlight{
 
-    transition:.4s;
+    position:absolute;
 
-}
+    inset:0;
 
-.scratch-card.revealed .reveal-date{
+    pointer-events:none;
 
-    text-shadow:
+    z-index:7;
 
-        0 0 10px rgba(212,175,55,.35),
+    background:
 
-        0 0 20px rgba(255,226,138,.15);
+        radial-gradient(
 
-}
+            circle at 35% 18%,
 
-.scratch-card.revealed .reveal-day{
+            rgba(255,255,255,.45),
 
-    text-shadow:
+            rgba(255,255,255,.18) 18%,
 
-        0 0 6px rgba(212,175,55,.18);
+            transparent 40%
 
-}
-
-.scratch-card.revealed .reveal-time{
-
-    text-shadow:
-
-        0 0 6px rgba(212,175,55,.15);
-
-}
-/* ==========================================================
-   REVEAL ANIMATIONS
-========================================================== */
-
-.card-content.show .gold-top-flourish{
-
-    animation:flourishTop .8s ease both;
+        );
 
 }
 
-.card-content.show .reveal-date{
+/* ===========================
+   REVEAL FLASH
+=========================== */
 
-    animation:dateReveal .9s ease both;
+.flash-burst{
 
-}
+    position:absolute;
 
-.card-content.show .reveal-day{
+    inset:-20%;
 
-    animation:dayReveal 1s ease both;
+    pointer-events:none;
 
-}
+    z-index:20;
 
-.card-content.show .reveal-time{
+    background:
 
-    animation:timeReveal 1.15s ease both;
+        radial-gradient(
 
-}
+            circle,
 
-.card-content.show .gold-bottom-flourish{
+            rgba(255,255,255,.70) 0%,
 
-    animation:flourishBottom .8s ease both;
+            rgba(255,255,255,.25) 35%,
 
-}
+            transparent 70%
 
-@keyframes flourishTop{
+        );
 
-0%{
+    animation:
 
-opacity:0;
-
-transform:
-translateY(-20px);
-
-}
-
-100%{
-
-opacity:1;
-
-transform:
-translateY(0);
+        flashReveal .9s ease forwards;
 
 }
 
-}
+@keyframes flashReveal{
 
-@keyframes flourishBottom{
+    0%{
 
-0%{
+        opacity:0;
 
-opacity:0;
+        transform:scale(.35);
 
-transform:
-translateY(20px);
+    }
 
-}
+    35%{
 
-100%{
+        opacity:1;
 
-opacity:1;
+        transform:scale(1);
 
-transform:
-translateY(0);
+    }
 
-}
+    100%{
 
-}
+        opacity:0;
 
-@keyframes dateReveal{
+        transform:scale(1.45);
 
-0%{
-
-opacity:0;
-
-transform:
-translateY(20px)
-scale(.9);
+    }
 
 }
 
-70%{
-
-transform:
-translateY(-4px)
-scale(1.05);
-
-}
-
-100%{
-
-opacity:1;
-
-transform:
-translateY(0)
-scale(1);
-
-}
-
-}
-
-@keyframes dayReveal{
-
-0%{
-
-opacity:0;
-
-transform:
-translateY(16px);
-
-letter-spacing:8px;
-
-}
-
-100%{
-
-opacity:1;
-
-transform:
-translateY(0);
-
-letter-spacing:3px;
-
-}
-
-}
-
-@keyframes timeReveal{
-
-0%{
-
-opacity:0;
-
-transform:
-translateY(16px);
-
-}
-
-100%{
-
-opacity:1;
-
-transform:
-translateY(0);
-
-}
-
-}
-
-/* ==========================================================
-   FLOATING ANIMATION
-========================================================== */
-
-.scratch-card.revealed{
-
-    animation:cardFloat 5s ease-in-out infinite;
-
-}
-
-@keyframes cardFloat{
-
-0%,100%{
-
-transform:
-translateY(0)
-scale(1.04);
-
-}
-
-50%{
-
-transform:
-translateY(-6px)
-scale(1.04);
-
-}
-
-}
-
-/* ==========================================================
-   HOVER
-========================================================== */
-
-.scratch-card{
-
-    cursor:pointer;
-
-}
-
-.scratch-card:hover{
-
-    transform:
-        translateY(-4px);
-
-    box-shadow:
-
-        0 28px 70px rgba(0,0,0,.18),
-
-        0 0 45px rgba(212,175,55,.20);
-
-}
-
-.scratch-card.revealed:hover{
-
-    transform:
-        translateY(-8px)
-        scale(1.05);
-
-}
-
-/* ==========================================================
-   SPARKLE EFFECT
-========================================================== */
-
-.scratch-card.revealed::before{
-
-    opacity:.28;
-
-}
-
-/* ==========================================================
-   MOBILE
-========================================================== */
+/* ===========================
+   RESPONSIVE
+=========================== */
 
 @media (max-width:768px){
 
-.scratch-section{
+    .heart-wrapper{
 
-padding:90px 20px;
+        width:300px;
 
-}
+        height:282px;
 
-.scratch-title{
+    }
 
-font-size:46px;
+    .reveal-date{
 
-}
+        font-size:2rem;
 
-.divider{
+    }
 
-margin-bottom:36px;
+    .reveal-day,
 
-}
+    .reveal-time{
 
-.scratch-card{
+        font-size:.9rem;
 
-width:270px;
+        letter-spacing:.16em;
 
-}
+    }
 
-.card-content{
+    .gold-top-flourish,
 
-padding:32px 22px 40px;
+    .gold-bottom-flourish{
 
-}
+        width:100px;
 
-.reveal-date{
-
-font-size:30px;
+    }
 
 }
 
-.reveal-day{
+@media (max-width:480px){
 
-font-size:15px;
+    .scratch-section{
 
-letter-spacing:2px;
+        padding:100px 16px;
 
-}
+    }
 
-.reveal-time{
+    .heart-wrapper{
 
-font-size:16px;
+        width:260px;
 
-}
+        height:244px;
 
-.gold-top-flourish,
-.gold-bottom-flourish{
+    }
 
-width:52px;
+    .reveal-date{
 
-}
+        font-size:1.7rem;
 
-}
+    }
 
-@media (max-width:420px){
+    .reveal-day,
 
-.scratch-card{
+    .reveal-time{
 
-width:235px;
+        font-size:.82rem;
 
-}
+    }
 
-.reveal-date{
+    .divider span{
 
-font-size:26px;
+        width:55px;
 
-}
+    }
 
-.reveal-day{
+    .gold-top-flourish,
 
-font-size:14px;
+    .gold-bottom-flourish{
 
-}
+        width:85px;
 
-.reveal-time{
-
-font-size:14px;
-
-}
-
-.gold-top-flourish,
-.gold-bottom-flourish{
-
-width:44px;
-
-}
+    }
 
 }

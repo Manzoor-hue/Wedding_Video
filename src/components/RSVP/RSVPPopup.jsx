@@ -4,11 +4,25 @@ import "./RSVPPopup.css";
 export default function RSVPPopup({ open, onClose }) {
 
     const [form, setForm] = useState({
+
         name: "",
+
         attendance: "",
-        guests: "1",
-        song: "",
-        children: ""
+
+        team: "",
+
+        excited: "",
+
+        gallery: "",
+
+        photo: "",
+
+        marriage: "",
+
+        memory: "",
+
+        cry: ""
+
     });
 
     useEffect(() => {
@@ -16,17 +30,25 @@ export default function RSVPPopup({ open, onClose }) {
         if (!open) return;
 
         const handleEsc = (e) => {
+
             if (e.key === "Escape") {
+
                 onClose();
+
             }
+
         };
 
         document.body.style.overflow = "hidden";
+
         window.addEventListener("keydown", handleEsc);
 
         return () => {
+
             document.body.style.overflow = "auto";
+
             window.removeEventListener("keydown", handleEsc);
+
         };
 
     }, [open, onClose]);
@@ -38,8 +60,11 @@ export default function RSVPPopup({ open, onClose }) {
         const { name, value } = e.target;
 
         setForm((prev) => ({
+
             ...prev,
+
             [name]: value,
+
         }));
 
     };
@@ -49,21 +74,27 @@ export default function RSVPPopup({ open, onClose }) {
         e.preventDefault();
 
         if (form.name.trim() === "") {
+
             alert("Please enter your name.");
+
             return;
+
         }
 
         if (form.attendance === "") {
+
             alert("Please select your attendance.");
+
             return;
+
         }
 
-        const phone = "+919360700749"; // Replace with your WhatsApp number
+        const phone = "+916383146227";
 
         const message = `
 ━━━━━━━━━━━━━━━━━━
 
-🤍 *Wedding RSVP*
+*Wedding RSVP*
 
 ━━━━━━━━━━━━━━━━━━
 
@@ -71,42 +102,71 @@ export default function RSVPPopup({ open, onClose }) {
 ${form.name}
 
 *Attendance*
-${form.attendance}
+${form.attendance || "Not answered"}
 
-*Guests*
-${form.guests}
+*Team*
+${form.team || "Not answered"}
 
-*Favourite Song*
-${form.song || "N/A"}
+*Most Excited For*
+${form.excited || "Not answered"}
 
-*Children*
-${form.children || "None"}
+*Ready to Fill Gallery*
+${form.gallery || "Not answered"}
+
+*Must-have Wedding Photo*
+${form.photo || "Not answered"}
+
+*Marriage is...*
+${form.marriage || "Not answered"}
+
+*Favourite Memory*
+${form.memory || "Not answered"}
+
+*Who will Cry First?*
+${form.cry || "Not answered"}
 
 ━━━━━━━━━━━━━━━━━━
 
-Looking forward to celebrating!
+Thank you...
+We can't wait to celebrate together!
 
 ━━━━━━━━━━━━━━━━━━
 `;
 
         window.open(
+
             `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+
             "_blank"
+
         );
 
         setForm({
+
             name: "",
+
             attendance: "",
-            guests: "1",
-            song: "",
-            children: ""
+
+            team: "",
+
+            excited: "",
+
+            gallery: "",
+
+            photo: "",
+
+            marriage: "",
+
+            memory: "",
+
+            cry: ""
+
         });
 
         onClose();
 
     };
-
-    return (
+        return (
 
         <div
             className="popup-overlay"
@@ -136,23 +196,33 @@ Looking forward to celebrating!
                     onSubmit={handleSubmit}
                 >
 
+                    {/* ===============================
+                        NAME
+                    =============================== */}
+
                     <div className="form-group">
 
-                        <label>Your Name</label>
+                        <label>Your Name *</label>
 
                         <input
                             type="text"
                             name="name"
                             value={form.name}
                             onChange={handleChange}
-                            placeholder="Enter your name"
+                            placeholder="Enter your full name"
                         />
 
                     </div>
 
+                    {/* ===============================
+                        ATTENDANCE
+                    =============================== */}
+
                     <div className="form-group">
 
-                        <label>Will you be attending?</label>
+                        <label>
+                            Will we have the pleasure of celebrating with you?
+                        </label>
 
                         <div className="radio-group">
 
@@ -169,7 +239,7 @@ Looking forward to celebrating!
                                     onChange={handleChange}
                                 />
 
-                                Accepts with pleasure
+                                Inshaallah, I'll be there to celebrate Your Special day 🤍
 
                             </label>
 
@@ -186,7 +256,7 @@ Looking forward to celebrating!
                                     onChange={handleChange}
                                 />
 
-                                Declines with regret
+                                Though I can't attend, my prayers and best wishes are with you 🌿
 
                             </label>
 
@@ -194,52 +264,201 @@ Looking forward to celebrating!
 
                     </div>
 
+                    {/* ===============================
+                        TEAM
+                    =============================== */}
+
                     <div className="form-group">
 
-                        <label>Number of Guests</label>
+                        <label>
+                            Which team are you joining?
+                            <span className="optional">
+                                (Optional)
+                            </span>
+                        </label>
 
                         <select
-                            name="guests"
-                            value={form.guests}
+                            name="team"
+                            value={form.team}
                             onChange={handleChange}
                         >
 
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
+                            <option value="">
+                                Select your team
+                            </option>
+
+                            <option>
+                                🤵 Groom Squad
+                            </option>
+
+                            <option>
+                                👰 Bride Squad
+                            </option>
+
+                            <option>
+                                🤍 Team Both
+                            </option>
 
                         </select>
 
                     </div>
 
+                    {/* ===============================
+                        MOST EXCITED
+                    =============================== */}
+
                     <div className="form-group">
 
-                        <label>Favourite Song (Optional)</label>
+                        <label>
+                            What's one moment you're excited for?
+                            <span className="optional">
+                                (Optional)
+                            </span>
+                        </label>
 
                         <input
                             type="text"
-                            name="song"
-                            value={form.song}
+                            name="excited"
+                            value={form.excited}
                             onChange={handleChange}
-                            placeholder="Your favourite song"
+                            placeholder="Nikkah, Dinner, Photos..."
                         />
 
                     </div>
 
+                    {/* ===============================
+                        READY TO FILL GALLERY
+                    =============================== */}
+
                     <div className="form-group">
 
-                        <label>Children Attending</label>
+                        <label>
+                            Ready to fill your gallery?
+                            <span className="optional">
+                                (Optional)
+                            </span>
+                        </label>
 
                         <input
                             type="text"
-                            name="children"
-                            value={form.children}
+                            name="gallery"
+                            value={form.gallery}
                             onChange={handleChange}
-                            placeholder="Names & Ages (optional)"
+                            placeholder="Absolutely! 📸"
                         />
+
+                    </div>
+                                        {/* ===============================
+                        MUST HAVE PHOTO
+                    =============================== */}
+
+                    <div className="form-group">
+
+                        <label>
+                            What's your must-have wedding photo?
+                            <span className="optional">
+                                (Optional)
+                            </span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="photo"
+                            value={form.photo}
+                            onChange={handleChange}
+                            placeholder="Selfie with the couple..."
+                        />
+
+                    </div>
+
+                    {/* ===============================
+                        MARRIAGE IS...
+                    =============================== */}
+
+                    <div className="form-group">
+
+                        <label>
+                            Complete this sentence:
+                            <br />
+                            <em>"Marriage is..."</em>
+                            <span className="optional">
+                                (Optional)
+                            </span>
+                        </label>
+
+                        <textarea
+                            name="marriage"
+                            value={form.marriage}
+                            onChange={handleChange}
+                            rows={3}
+                            placeholder="Love, friendship, patience..."
+                        />
+
+                    </div>
+
+                    {/* ===============================
+                        FAVOURITE MEMORY
+                    =============================== */}
+
+                    <div className="form-group">
+
+                        <label>
+                            What's your favourite memory with us?
+                            <span className="optional">
+                                (Optional)
+                            </span>
+                        </label>
+
+                        <textarea
+                            name="memory"
+                            value={form.memory}
+                            onChange={handleChange}
+                            rows={4}
+                            placeholder="Share your favourite memory..."
+                        />
+
+                    </div>
+
+                    {/* ===============================
+                        WHO WILL CRY FIRST
+                    =============================== */}
+
+                    <div className="form-group">
+
+                        <label>
+                            Predict who will cry first.
+                            <span className="optional">
+                                (Optional)
+                            </span>
+                        </label>
+
+                        <select
+                            name="cry"
+                            value={form.cry}
+                            onChange={handleChange}
+                        >
+
+                            <option value="">
+                                Make your prediction
+                            </option>
+
+                            <option>
+                                😂 Bride
+                            </option>
+
+                            <option>
+                                😂 Groom
+                            </option>
+
+                            <option>
+                                🥹 Both
+                            </option>
+
+                            <option>
+                                ❤️ Parents
+                            </option>
+
+                        </select>
 
                     </div>
 

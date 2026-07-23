@@ -49,7 +49,9 @@ export default function DressCode() {
             <h2>Gift Preference</h2>
 
             <p>
-              Kindly, no boxed gifts please.
+              Your presence is our greatest gift. If you wish to bless us further,
+              <br />
+             we would be grateful for your kind contribution.
             </p>
 
           </div>

@@ -1,6 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:wght@400;500;600;700&display=swap");
 
 /* ==========================================================
+   COLORS
+========================================================== */
+
+:root{
+
+    --gold:#c79a39;
+    --gold-light:#e7d2a2;
+
+    --wine:#8d2435;
+    --wine-dark:#5b1422;
+
+    --text:#6a5147;
+
+    --border:#dcc9b0;
+
+    --paper:#fdf9f3;
+
+}
+
+/* ==========================================================
    OVERLAY
 ========================================================== */
 
@@ -16,27 +36,27 @@
 
     align-items:center;
 
+    padding:30px;
+
     background:rgba(0,0,0,.45);
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:blur(12px);
 
     z-index:9999;
 
     animation:fadeIn .35s ease;
 
-    padding:30px;
-
 }
 
 /* ==========================================================
-   CARD
+   POPUP CARD
 ========================================================== */
 
 .popup-card{
 
     position:relative;
 
-    width:460px;
+    width:470px;
 
     max-width:100%;
 
@@ -44,23 +64,29 @@
 
     overflow-y:auto;
 
-    background:#fdf9f3;
+    background:var(--paper);
 
-    border-radius:24px;
+    border-radius:26px;
 
-    padding:35px 34px;
+    padding:36px 34px;
 
     box-shadow:
-        0 25px 70px rgba(0,0,0,.18),
-        0 0 25px rgba(199,154,57,.15);
+
+        0 30px 70px rgba(0,0,0,.18),
+
+        0 0 30px rgba(199,154,57,.12);
 
     animation:popup .35s ease;
 
     scrollbar-width:thin;
 
-    scrollbar-color:#c79a39 transparent;
+    scrollbar-color:var(--gold) transparent;
 
 }
+
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
 
 .popup-card::-webkit-scrollbar{
 
@@ -68,9 +94,15 @@
 
 }
 
+.popup-card::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
 .popup-card::-webkit-scrollbar-thumb{
 
-    background:#c79a39;
+    background:var(--gold);
 
     border-radius:20px;
 
@@ -86,29 +118,33 @@
 
     top:18px;
 
-    right:20px;
+    right:18px;
 
-    width:36px;
+    width:38px;
 
-    height:36px;
+    height:38px;
 
     border:none;
 
+    border-radius:50%;
+
     background:transparent;
 
-    color:#8d2435;
+    color:var(--wine);
 
     font-size:24px;
 
     cursor:pointer;
 
-    transition:.35s;
+    transition:.35s ease;
 
 }
 
 .popup-close:hover{
 
     transform:rotate(90deg);
+
+    color:var(--gold);
 
 }
 
@@ -124,30 +160,41 @@
 
     font-family:"Alex Brush",cursive;
 
-    font-size:48px;
+    font-size:50px;
 
     font-weight:400;
 
-    color:#c79a39;
+    color:var(--gold);
 
 }
 
+/* ==========================================================
+   SUBTITLE
+========================================================== */
+
 .popup-subtitle{
 
-    margin:10px 0 28px;
+    margin:12px 0 30px;
 
     text-align:center;
 
     font-family:"Cormorant Garamond",serif;
 
-    color:#6b5548;
-
     font-size:20px;
 
     line-height:1.6;
 
+    color:var(--text);
+
 }
 
+.popup-subtitle strong{
+
+    color:var(--wine);
+
+    font-weight:700;
+
+}
 /* ==========================================================
    FORM
 ========================================================== */
@@ -158,12 +205,12 @@
 
     flex-direction:column;
 
-    gap:18px;
+    gap:22px;
 
 }
 
 /* ==========================================================
-   LABEL
+   FORM GROUP
 ========================================================== */
 
 .form-group{
@@ -172,66 +219,160 @@
 
     flex-direction:column;
 
-}
-
-.form-group label{
-
-    margin-bottom:8px;
-
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:18px;
-
-    font-weight:600;
-
-    color:#7a5d4d;
+    gap:8px;
 
 }
 
 /* ==========================================================
-   INPUT
+   LABEL
 ========================================================== */
 
-.form-group input,
-
-.form-group select{
-
-    width:100%;
-
-    padding:12px 14px;
-
-    border:1px solid #dbc8af;
-
-    border-radius:12px;
-
-    background:#fff;
-
-    font-size:16px;
+.form-group label{
 
     font-family:"Cormorant Garamond",serif;
 
-    color:#5b4438;
+    font-size:19px;
+
+    font-weight:600;
+
+    color:var(--text);
+
+    line-height:1.45;
+
+}
+
+.optional{
+
+    margin-left:6px;
+
+    font-size:14px;
+
+    font-weight:500;
+
+    color:var(--gold);
+
+    opacity:.85;
+
+}
+
+/* ==========================================================
+   INPUTS
+========================================================== */
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+
+    width:100%;
+
+    padding:14px 16px;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    background:white;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:17px;
+
+    color:var(--text);
 
     outline:none;
 
-    transition:.25s;
+    transition:
+
+        border-color .25s ease,
+
+        box-shadow .25s ease,
+
+        transform .25s ease;
 
     box-sizing:border-box;
 
 }
 
-.form-group input:focus,
+/* ==========================================================
+   TEXTAREA
+========================================================== */
 
-.form-group select:focus{
+.form-group textarea{
 
-    border-color:#c79a39;
+    min-height:110px;
 
-    box-shadow:0 0 0 3px rgba(199,154,57,.15);
+    resize:vertical;
 
 }
 
 /* ==========================================================
-   RADIO
+   PLACEHOLDER
+========================================================== */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder{
+
+    color:#b49b89;
+
+    opacity:1;
+
+}
+
+/* ==========================================================
+   FOCUS
+========================================================== */
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+
+    border-color:var(--gold);
+
+    box-shadow:
+
+        0 0 0 3px rgba(199,154,57,.15);
+
+}
+
+/* ==========================================================
+   SELECT
+========================================================== */
+
+.form-group select{
+
+    cursor:pointer;
+
+}
+
+/* ==========================================================
+   TEXTAREA SCROLLBAR
+========================================================== */
+
+.form-group textarea::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+.form-group textarea::-webkit-scrollbar-thumb{
+
+    background:var(--gold);
+
+    border-radius:20px;
+
+}
+
+/* ==========================================================
+   DIVIDER BETWEEN QUESTIONS
+========================================================== */
+
+.form-group:not(:last-child){
+
+    padding-bottom:2px;
+
+}
+/* ==========================================================
+   RADIO GROUP
 ========================================================== */
 
 .radio-group{
@@ -240,7 +381,7 @@
 
     flex-direction:column;
 
-    gap:10px;
+    gap:14px;
 
 }
 
@@ -250,57 +391,123 @@
 
     align-items:center;
 
-    gap:10px;
+    gap:14px;
 
-    margin:0;
+    cursor:pointer;
+
+    font-family:"Cormorant Garamond",serif;
 
     font-size:17px;
 
     font-weight:500;
 
-    cursor:pointer;
+    color:var(--text);
+
+    transition:.3s ease;
 
 }
 
-.radio-group input{
+/* Hide browser radio */
 
-    accent-color:#8d2435;
+.radio-group input[type="radio"]{
 
-    transform:scale(1.15);
+    appearance:none;
+
+    -webkit-appearance:none;
+
+    width:22px;
+
+    height:22px;
+
+    border:2px solid var(--gold);
+
+    border-radius:50%;
+
+    background:white;
+
+    display:grid;
+
+    place-items:center;
+
+    cursor:pointer;
+
+    transition:.25s ease;
+
+}
+
+.radio-group input[type="radio"]::before{
+
+    content:"";
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    transform:scale(0);
+
+    transition:.25s ease;
+
+    background:var(--wine);
+
+}
+
+.radio-group input[type="radio"]:checked{
+
+    border-color:var(--wine);
+
+}
+
+.radio-group input[type="radio"]:checked::before{
+
+    transform:scale(1);
+
+}
+
+.radio-group label:hover{
+
+    color:var(--gold);
 
 }
 
 /* ==========================================================
-   BUTTON
+   SUBMIT BUTTON
 ========================================================== */
 
 .submit-btn{
-
-    margin-top:10px;
-
-    border:none;
-
-    border-radius:40px;
-
-    padding:15px;
-
-    cursor:pointer;
-
-    color:white;
-
-    font-size:18px;
-
-    font-family:"Cormorant Garamond",serif;
-
-    font-weight:600;
-
-    background:linear-gradient(135deg,#8d2435,#5a0f1b);
 
     position:relative;
 
     overflow:hidden;
 
-    transition:.35s;
+    margin-top:10px;
+
+    width:100%;
+
+    border:none;
+
+    border-radius:50px;
+
+    padding:16px;
+
+    cursor:pointer;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:19px;
+
+    font-weight:600;
+
+    color:white;
+
+    background:linear-gradient(
+        135deg,
+        var(--wine),
+        var(--wine-dark)
+    );
+
+    transition:.35s ease;
 
 }
 
@@ -308,7 +515,15 @@
 
     transform:translateY(-3px);
 
-    box-shadow:0 12px 24px rgba(141,36,53,.25);
+    box-shadow:
+
+        0 14px 28px rgba(141,36,53,.25);
+
+}
+
+.submit-btn:active{
+
+    transform:translateY(0);
 
 }
 
@@ -320,9 +535,9 @@
 
     top:0;
 
-    left:-100%;
+    left:-120%;
 
-    width:80px;
+    width:90px;
 
     height:100%;
 
@@ -332,7 +547,7 @@
 
         transparent,
 
-        rgba(255,255,255,.4),
+        rgba(255,255,255,.45),
 
         transparent
 
@@ -342,12 +557,12 @@
 
 .submit-btn:hover::before{
 
-    animation:shine .8s forwards;
+    animation:shine .9s linear;
 
 }
 
 /* ==========================================================
-   ANIMATION
+   ANIMATIONS
 ========================================================== */
 
 @keyframes popup{
@@ -390,13 +605,29 @@
 
     from{
 
-        left:-100px;
+        left:-120%;
 
     }
 
     to{
 
-        left:120%;
+        left:140%;
+
+    }
+
+}
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width:900px){
+
+    .popup-card{
+
+        width:min(92vw,460px);
+
+        padding:30px 26px;
 
     }
 
@@ -406,60 +637,166 @@
    MOBILE
 ========================================================== */
 
-@media(max-width:768px){
+@media (max-width:768px){
 
-.popup-overlay{
+    .popup-overlay{
 
-padding:18px;
+        padding:16px;
+
+    }
+
+    .popup-card{
+
+        width:100%;
+
+        max-width:380px;
+
+        max-height:88vh;
+
+        padding:26px 20px;
+
+        border-radius:22px;
+
+    }
+
+    .popup-close{
+
+        top:14px;
+
+        right:14px;
+
+        width:34px;
+
+        height:34px;
+
+        font-size:22px;
+
+    }
+
+    .popup-card h2{
+
+        font-size:42px;
+
+    }
+
+    .popup-subtitle{
+
+        font-size:17px;
+
+        margin-bottom:24px;
+
+    }
+
+    .rsvp-form{
+
+        gap:18px;
+
+    }
+
+    .form-group label{
+
+        font-size:17px;
+
+    }
+
+    .optional{
+
+        display:block;
+
+        margin-top:3px;
+
+        margin-left:0;
+
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea{
+
+        padding:13px 14px;
+
+        font-size:16px;
+
+    }
+
+    .form-group textarea{
+
+        min-height:100px;
+
+    }
+
+    .radio-group{
+
+        gap:12px;
+
+    }
+
+    .radio-group label{
+
+        font-size:16px;
+
+        align-items:flex-start;
+
+    }
+
+    .submit-btn{
+
+        font-size:17px;
+
+        padding:15px;
+
+    }
 
 }
 
-.popup-card{
+/* ==========================================================
+   SMALL PHONES
+========================================================== */
 
-padding:26px 22px;
+@media (max-width:390px){
 
-width:100%;
+    .popup-overlay{
 
-max-height:88vh;
+        padding:12px;
 
-}
+    }
 
-.popup-card h2{
+    .popup-card{
 
-font-size:40px;
+        padding:22px 16px;
 
-}
+    }
 
-.popup-subtitle{
+    .popup-card h2{
 
-font-size:17px;
+        font-size:36px;
 
-margin-bottom:22px;
+    }
 
-}
+    .popup-subtitle{
 
-.form-group label{
+        font-size:15px;
 
-font-size:17px;
+    }
 
-}
+    .form-group label{
 
-.form-group input,
+        font-size:16px;
 
-.form-group select{
+    }
 
-padding:11px 12px;
+    .form-group input,
+    .form-group select,
+    .form-group textarea{
 
-font-size:15px;
+        font-size:15px;
 
-}
+    }
 
-.submit-btn{
+    .submit-btn{
 
-font-size:17px;
+        font-size:16px;
 
-padding:14px;
-
-}
+    }
 
 }

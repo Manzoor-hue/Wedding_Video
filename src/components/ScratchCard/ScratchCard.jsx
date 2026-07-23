@@ -1,236 +1,553 @@
 import "./ScratchCard.css";
 import { useEffect, useRef, useState } from "react";
-import ParticleBurst from "./ParticleBurst";
+import confetti from "canvas-confetti";
+
+const WIDTH = 260;
+const HEIGHT = 240;
+const BRUSH = 24;
 
 export default function ScratchCard() {
+
   const canvasRef = useRef(null);
-  const wrapperRef = useRef(null);
+
+  const drawingRef = useRef(false);
+
+  const revealedRef = useRef(false);
 
   const [revealed, setRevealed] = useState(false);
-  const [burst, setBurst] = useState(false);
 
   useEffect(() => {
+
     const canvas = canvasRef.current;
-    const wrapper = wrapperRef.current;
 
-    if (!canvas || !wrapper) return;
+    if (!canvas) return;
 
-    const ctx = canvas.getContext("2d", {
-      willReadFrequently: true,
-    });
+    const dpr = window.devicePixelRatio || 1;
 
-    function resize() {
-      canvas.width = wrapper.offsetWidth;
-      canvas.height = wrapper.offsetHeight;
-      drawCover();
-    }
+    canvas.width = WIDTH * dpr;
+    canvas.height = HEIGHT * dpr;
 
-    function drawCover() {
-      const w = canvas.width;
-      const h = canvas.height;
+    canvas.style.width = WIDTH + "px";
+    canvas.style.height = HEIGHT + "px";
 
-      const g = ctx.createLinearGradient(0, 0, w, h);
+    const ctx = canvas.getContext("2d");
 
-      g.addColorStop(0, "#FFF4C4");
-      g.addColorStop(0.3, "#F2C75A");
-      g.addColorStop(0.6, "#D89A1D");
-      g.addColorStop(1, "#B87800");
+    ctx.scale(dpr, dpr);
 
-      ctx.globalCompositeOperation = "source-over";
-      ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = g;
-      ctx.fillRect(0, 0, w, h);
+    drawCover(ctx);
 
-      for (let i = 0; i < 600; i++) {
-        ctx.fillStyle = `rgba(255,255,255,${Math.random() * 0.4})`;
+    function getPoint(e){
 
-        ctx.fillRect(
-          Math.random() * w,
-          Math.random() * h,
-          2,
-          2
-        );
-      }
+      const rect =
+      canvas.getBoundingClientRect();
 
-      ctx.fillStyle = "#ffffff";
-      ctx.font = "700 22px Cormorant Garamond";
-      ctx.textAlign = "center";
-      ctx.fillText("Scratch Here", w / 2, h / 2);
-    }
+      return{
 
-    resize();
+        x:
+        (e.touches
+          ? e.touches[0].clientX
+          : e.clientX) - rect.left,
 
-    window.addEventListener("resize", resize);
+        y:
+        (e.touches
+          ? e.touches[0].clientY
+          : e.clientY) - rect.top
 
-    let scratching = false;
-
-    function getPos(e) {
-      const rect = canvas.getBoundingClientRect();
-
-      if (e.touches) {
-        return {
-          x: e.touches[0].clientX - rect.left,
-          y: e.touches[0].clientY - rect.top,
-        };
-      }
-
-      return {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
       };
+
     }
 
-    function scratch(x, y) {
-      ctx.globalCompositeOperation = "destination-out";
+    function start(e){
 
-      ctx.beginPath();
-      ctx.arc(x, y, 25, 0, Math.PI * 2);
-      ctx.fill();
+      if(revealedRef.current) return;
 
-      checkReveal();
+      drawingRef.current = true;
+
+      scratch(e);
+
     }
 
-    function checkReveal() {
-      if (revealed) return;
+    function scratch(e){
 
-      const pixels = ctx.getImageData(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-      ).data;
-
-      let transparent = 0;
-
-      for (let i = 3; i < pixels.length; i += 4) {
-        if (pixels[i] < 20) transparent++;
-      }
-
-      const percent =
-        transparent / (canvas.width * canvas.height);
-
-      if (percent > 0.35) {
-        setRevealed(true);
-
-        setTimeout(() => {
-          setBurst(true);
-        }, 200);
-
-        canvas.style.transition = "opacity .8s ease";
-        canvas.style.opacity = "0";
-        canvas.style.pointerEvents = "none";
-      }
-    }
-
-    function start(e) {
-      scratching = true;
-
-      const p = getPos(e);
-      scratch(p.x, p.y);
-    }
-
-    function move(e) {
-      if (!scratching) return;
+      if(!drawingRef.current) return;
 
       e.preventDefault();
 
-      const p = getPos(e);
-      scratch(p.x, p.y);
+      const p = getPoint(e);
+
+      ctx.save();
+
+      ctx.globalCompositeOperation =
+      "destination-out";
+
+      ctx.beginPath();
+
+      ctx.arc(
+        p.x,
+        p.y,
+        BRUSH,
+        0,
+        Math.PI*2
+      );
+
+      ctx.fill();
+
+      ctx.restore();
+
     }
 
-    function stop() {
-      scratching = false;
+    function end(){
+
+      drawingRef.current = false;
+
+      checkReveal();
+
     }
 
-    canvas.addEventListener("mousedown", start);
-    canvas.addEventListener("mousemove", move);
-    window.addEventListener("mouseup", stop);
+    function checkReveal(){
 
-    canvas.addEventListener("touchstart", start);
-    canvas.addEventListener("touchmove", move, {
-      passive: false,
-    });
-    window.addEventListener("touchend", stop);
+      if(revealedRef.current) return;
 
-    return () => {
-      window.removeEventListener("resize", resize);
+      const pixels =
+      ctx.getImageData(
+        0,
+        0,
+        WIDTH,
+        HEIGHT
+      ).data;
 
-      canvas.removeEventListener("mousedown", start);
-      canvas.removeEventListener("mousemove", move);
-      window.removeEventListener("mouseup", stop);
+      let cleared = 0;
 
-      canvas.removeEventListener("touchstart", start);
-      canvas.removeEventListener("touchmove", move);
-      window.removeEventListener("touchend", stop);
+      let total = 0;
+
+      for(
+        let i = 3;
+        i < pixels.length;
+        i += 4
+      ){
+
+        total++;
+
+        if(pixels[i] < 20){
+
+          cleared++;
+
+        }
+
+      }
+
+      if(cleared / total > 0.60){
+
+        revealedRef.current = true;
+
+        setRevealed(true);
+
+        canvas.style.transition =
+        "opacity .8s ease";
+
+        canvas.style.opacity = "0";
+
+        canvas.style.pointerEvents =
+        "none";
+
+        confetti({
+
+          particleCount:180,
+
+          spread:90,
+
+          startVelocity:40,
+
+          scalar:1.05,
+
+          origin:{
+            x:.5,
+            y:.45
+          }
+
+        });
+
+      }
+
+    }
+
+    canvas.addEventListener(
+      "mousedown",
+      start
+    );
+
+    canvas.addEventListener(
+      "mousemove",
+      scratch
+    );
+
+    window.addEventListener(
+      "mouseup",
+      end
+    );
+
+    canvas.addEventListener(
+      "touchstart",
+      start,
+      { passive:false }
+    );
+
+    canvas.addEventListener(
+      "touchmove",
+      scratch,
+      { passive:false }
+    );
+
+    window.addEventListener(
+      "touchend",
+      end
+    );
+        return () => {
+
+      canvas.removeEventListener(
+        "mousedown",
+        start
+      );
+
+      canvas.removeEventListener(
+        "mousemove",
+        scratch
+      );
+
+      window.removeEventListener(
+        "mouseup",
+        end
+      );
+
+      canvas.removeEventListener(
+        "touchstart",
+        start
+      );
+
+      canvas.removeEventListener(
+        "touchmove",
+        scratch
+      );
+
+      window.removeEventListener(
+        "touchend",
+        end
+      );
+
     };
-  }, [revealed]);
+
+  }, []);
+
+  function drawCover(ctx){
+
+    ctx.clearRect(
+      0,
+      0,
+      WIDTH,
+      HEIGHT
+    );
+
+    /* ===============================
+       LUXURY GOLD BASE
+    ================================ */
+
+    const gold =
+      ctx.createLinearGradient(
+        0,
+        0,
+        WIDTH,
+        HEIGHT
+      );
+
+    gold.addColorStop(0,"#fff8d8");
+    gold.addColorStop(.15,"#f6df86");
+    gold.addColorStop(.35,"#d8b03c");
+    gold.addColorStop(.50,"#fff2b4");
+    gold.addColorStop(.70,"#c89420");
+    gold.addColorStop(1,"#896216");
+
+    ctx.fillStyle = gold;
+
+    ctx.fillRect(
+      0,
+      0,
+      WIDTH,
+      HEIGHT
+    );
+
+    /* ===============================
+       METALLIC STRIPES
+    ================================ */
+
+    for(
+      let i=-HEIGHT;
+      i<WIDTH;
+      i+=12
+    ){
+
+      ctx.beginPath();
+
+      ctx.strokeStyle =
+      "rgba(255,255,255,.18)";
+
+      ctx.lineWidth = 2;
+
+      ctx.moveTo(i,0);
+
+      ctx.lineTo(
+        i+HEIGHT,
+        HEIGHT
+      );
+
+      ctx.stroke();
+
+    }
+
+    /* ===============================
+       GOLD SPARKLES
+    ================================ */
+
+    for(
+      let i=0;
+      i<420;
+      i++
+    ){
+
+      ctx.beginPath();
+
+      ctx.fillStyle =
+      `rgba(
+        255,
+        255,
+        255,
+        ${Math.random()*0.18}
+      )`;
+
+      ctx.arc(
+
+        Math.random()*WIDTH,
+
+        Math.random()*HEIGHT,
+
+        Math.random()*1.6,
+
+        0,
+
+        Math.PI*2
+
+      );
+
+      ctx.fill();
+
+    }
+
+    /* ===============================
+       SOFT TOP SHINE
+    ================================ */
+
+    const shine =
+      ctx.createRadialGradient(
+
+        WIDTH*.35,
+
+        HEIGHT*.18,
+
+        10,
+
+        WIDTH*.35,
+
+        HEIGHT*.18,
+
+        140
+
+      );
+
+    shine.addColorStop(
+      0,
+      "rgba(255,255,255,.50)"
+    );
+
+    shine.addColorStop(
+      .45,
+      "rgba(255,255,255,.15)"
+    );
+
+    shine.addColorStop(
+      1,
+      "rgba(255,255,255,0)"
+    );
+
+    ctx.fillStyle = shine;
+
+    ctx.fillRect(
+      0,
+      0,
+      WIDTH,
+      HEIGHT
+    );
+
+    /* ===============================
+       SCRATCH TEXT
+    ================================ */
+
+    ctx.font =
+    "600 18px Cinzel";
+
+    ctx.textAlign =
+    "center";
+
+    ctx.textBaseline =
+    "middle";
+
+    ctx.fillStyle =
+    "#ffffff";
+
+    ctx.shadowColor =
+    "rgba(0,0,0,.25)";
+
+    ctx.shadowBlur = 8;
+
+    ctx.fillText(
+
+      "SCRATCH TO REVEAL",
+
+      WIDTH/2,
+
+      HEIGHT/2
+
+    );
+
+    ctx.shadowBlur = 0;
+
+  }
 
   return (
+
     <section className="scratch-section">
 
-      <h2 className="scratch-title">
-        {revealed ? "You're Invited!" : "Scratch to Reveal"}
-      </h2>
+      <div className="scratch-container">
 
-      <div className="divider">
-        <span></span>
-        ❤
-        <span></span>
-      </div>
-
-      <div className="scratch-heart">
-
-        <div
-          ref={wrapperRef}
-          className={`scratch-card ${
-            revealed ? "revealed" : ""
-          }`}
+        <svg
+          width="0"
+          height="0"
+          style={{
+            position:"absolute"
+          }}
+          aria-hidden="true"
         >
 
-          <div
-            className={`card-content ${
-              revealed ? "show" : ""
-            }`}
-          >
+          <defs>
 
-            <div className="gold-top-flourish"></div>
+            <clipPath
+              id="royal-heart"
+              clipPathUnits="objectBoundingBox"
+            >
 
-            <h3 className="reveal-date">
-              16 August 2026
-            </h3>
+              <path d="
+                M0.5,0.96
+                C0.5,0.96 0.06,0.70 0.06,0.36
+                C0.06,0.18 0.20,0.06 0.32,0.06
+                C0.42,0.06 0.48,0.14 0.5,0.24
+                C0.52,0.14 0.58,0.06 0.68,0.06
+                C0.80,0.06 0.94,0.18 0.94,0.36
+                C0.94,0.70 0.5,0.96 0.5,0.96
+                Z
+              "/>
 
-            <h4 className="reveal-day">
-              Sunday
-            </h4>
+            </clipPath>
 
-            <small className="reveal-time">
-              05:00 PM 
-            </small>
+          </defs>
 
-            <div className="gold-bottom-flourish"></div>
+        </svg>
+                <h2 className="scratch-title">
+          Save the Date
+        </h2>
+
+        <div className="divider">
+
+          <span />
+
+          ✦
+
+          <span />
+
+        </div>
+
+        <div className="heart-wrapper">
+
+          <div className="heart-shadow" />
+
+          <div className="heart-clip">
+
+            <div
+              className={`card-content ${
+                revealed ? "show" : ""
+              }`}
+            >
+
+              <div className="gold-top-flourish" />
+
+              <h3 className="reveal-date">
+                16 August 2026
+              </h3>
+
+              <p className="reveal-day">
+                Sunday
+              </p>
+
+              <p className="reveal-time">
+                05:00 PM
+              </p>
+
+              <div className="gold-bottom-flourish" />
+
+            </div>
+
+            <canvas
+              ref={canvasRef}
+              className="scratch-canvas"
+            />
+
+            <div className="heart-vignette" />
+
+            <div className="heart-highlight" />
 
           </div>
 
-          <canvas
-            ref={canvasRef}
-            className="scratch-canvas"
-          />
+          <svg
+            className="heart-outline"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+
+            <path
+              d="
+              M50,96
+              C50,96 6,70 6,36
+              C6,18 20,6 32,6
+              C42,6 48,14 50,24
+              C52,14 58,6 68,6
+              C80,6 94,18 94,36
+              C94,70 50,96 50,96
+              Z
+              "
+            />
+
+          </svg>
 
           {revealed && (
-            <>
-              <svg className="gold-border" viewBox="0 0 320 300" preserveAspectRatio="none">
-                <path d="M160 280 C160 280 20 190 20 95 C20 40 68 20 104 20 C132 20 152 44 160 74 C168 44 188 20 216 20 C252 20 300 40 300 95 C300 190 160 280 160 280" />
-              </svg>
-              <div className="flash-burst"></div>
-            </>
-          )}
 
-          {burst && <ParticleBurst />}
+            <div className="flash-burst" />
+
+          )}
 
         </div>
 
       </div>
 
     </section>
+
   );
+
 }
