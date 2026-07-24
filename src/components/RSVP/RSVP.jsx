@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./RSVP.css";
 
-import ChooseSide from "./ChooseSide";
+import Chooseside from "./Chooseside";
 import RSVPPopup from "./RSVPPopup";
 
   export default function RSVP() {
