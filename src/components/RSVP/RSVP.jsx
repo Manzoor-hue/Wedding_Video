@@ -1,62 +1,95 @@
 import { useState } from "react";
 import "./RSVP.css";
+
+import ChooseSide from "./ChooseSide";
 import RSVPPopup from "./RSVPPopup";
 
-export default function RSVP() {
-  const [open, setOpen] = useState(false);
+  export default function RSVP() {
+    const [chooseOpen, setChooseOpen] = useState(false);
 
-  return (
-    <>
-      <section className="rsvp-section" id="rsvp">
+    const [popupOpen, setPopupOpen] = useState(false);
 
-        <h2 className="rsvp-title">
-          Confirm Your Attendance
-        </h2>
+    const [selectedSide, setSelectedSide] = useState("");
 
-        <p className="rsvp-text">
-          To help us prepare for a joyful celebration,
-          <br />
-          kindly confirm your attendance.
-        </p>
+    return (
+      <>
+        <section className="rsvp-section" id="rsvp">
 
-        <button
-          className="seal-button"
-          onClick={() => setOpen(true)}
-          aria-label="Open RSVP"
-        >
-          <img
-            src="/images/decorations/rsvp-seal.webp"
-            alt="RSVP"
-          />
-        </button>
+          <h2 className="rsvp-title">
+            Confirm Your Attendance
+          </h2>
 
-        <div className="click-open">
+          <p className="rsvp-text">
+            To help us prepare for a joyful celebration,
+            <br />
+            kindly confirm your attendance.
+          </p>
 
-          <span>⌄</span>
+          <button
+            className="seal-button"
+            onClick={() => setChooseOpen(true)}
+            aria-label="Open RSVP"
+          >
+            <img
+              src="/images/decorations/rsvp-seal.webp"
+              alt="RSVP"
+            />
+          </button>
 
-          <p>Click to Open</p>
+          <div className="click-open">
 
-        </div>
+            <span>⌄</span>
 
-        <h3 className="hope-text">
+            <p>Click to Open</p>
 
-          Hope to see you there!
+          </div>
 
-        </h3>
+          <h3 className="hope-text">
 
-        <h4 className="couple-name">
+            Hope to see you there!
 
-          Imran & Aysha
+          </h3>
 
-        </h4>
+          <h4 className="couple-name">
 
-      </section>
+            Imran & Aysha
 
-      <RSVPPopup
-        open={open}
-        onClose={() => setOpen(false)}
-      />
+          </h4>
 
-    </>
-  );
-}
+        </section>
+
+<ChooseSide
+
+    open={chooseOpen}
+
+    onClose={() => setChooseOpen(false)}
+
+    onSelect={(side) => {
+
+        setSelectedSide(side);
+
+        setChooseOpen(false);
+
+        setTimeout(() => {
+
+            setPopupOpen(true);
+
+        }, 250);
+
+    }}
+
+/>
+
+<RSVPPopup
+
+    open={popupOpen}
+
+    side={selectedSide}
+
+    onClose={() => setPopupOpen(false)}
+
+/>
+
+      </>
+    );
+  }

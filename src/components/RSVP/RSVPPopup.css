@@ -1,28 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:wght@400;500;600;700&display=swap");
-
-/* ==========================================================
-   COLORS
-========================================================== */
-
-:root{
-
-    --gold:#c79a39;
-    --gold-light:#e7d2a2;
-
-    --wine:#8d2435;
-    --wine-dark:#5b1422;
-
-    --text:#6a5147;
-
-    --border:#dcc9b0;
-
-    --paper:#fdf9f3;
-
-}
-
-/* ==========================================================
-   OVERLAY
-========================================================== */
+/* ===================================================
+   RSVP POPUP
+   Luxury Wedding Invitation
+=================================================== */
 
 .popup-overlay{
 
@@ -30,67 +9,134 @@
 
     inset:0;
 
+    z-index:99999;
+
     display:flex;
 
     justify-content:center;
 
     align-items:center;
 
-    padding:30px;
+    padding:24px;
 
-    background:rgba(0,0,0,.45);
+    background:rgba(20,18,16,.62);
 
-    backdrop-filter:blur(12px);
+    backdrop-filter:blur(10px);
 
-    z-index:9999;
+    -webkit-backdrop-filter:blur(10px);
 
-    animation:fadeIn .35s ease;
+    animation:fadeOverlay .35s ease;
 
 }
 
-/* ==========================================================
-   POPUP CARD
-========================================================== */
+
+/* ===================================================
+   INVITATION CARD
+=================================================== */
 
 .popup-card{
 
     position:relative;
 
-    width:470px;
+    width:min(94vw,760px);
 
-    max-width:100%;
-
-    max-height:90vh;
+    max-height:92vh;
 
     overflow-y:auto;
 
-    background:var(--paper);
+    border-radius:34px;
 
-    border-radius:26px;
+    padding:55px 48px 45px;
 
-    padding:36px 34px;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.98),
+            rgba(250,246,240,.98)
+        );
+
+    border:1px solid rgba(198,155,69,.28);
 
     box-shadow:
 
-        0 30px 70px rgba(0,0,0,.18),
+        0 30px 90px rgba(0,0,0,.20),
 
-        0 0 30px rgba(199,154,57,.12);
+        inset 0 0 0 1px rgba(255,255,255,.50);
 
-    animation:popup .35s ease;
-
-    scrollbar-width:thin;
-
-    scrollbar-color:var(--gold) transparent;
+    animation:popupIn .45s ease;
 
 }
 
-/* ==========================================================
+
+/* Luxury Gold Border */
+
+.popup-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:12px;
+
+    border-radius:24px;
+
+    border:1px solid rgba(198,155,69,.35);
+
+    pointer-events:none;
+
+}
+
+
+/* Soft Gold Glow */
+
+.popup-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:-180px;
+
+    left:-180px;
+
+    width:420px;
+
+    height:420px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(212,175,55,.18),
+
+            transparent 72%
+
+        );
+
+    pointer-events:none;
+
+}
+
+
+/* ===================================================
    SCROLLBAR
-========================================================== */
+=================================================== */
 
 .popup-card::-webkit-scrollbar{
 
-    width:7px;
+    width:8px;
+
+}
+
+.popup-card::-webkit-scrollbar-thumb{
+
+    background:#c69b45;
+
+    border-radius:20px;
 
 }
 
@@ -100,43 +146,40 @@
 
 }
 
-.popup-card::-webkit-scrollbar-thumb{
 
-    background:var(--gold);
-
-    border-radius:20px;
-
-}
-
-/* ==========================================================
+/* ===================================================
    CLOSE BUTTON
-========================================================== */
+=================================================== */
 
 .popup-close{
 
     position:absolute;
 
-    top:18px;
+    top:22px;
 
-    right:18px;
+    right:22px;
 
-    width:38px;
+    width:42px;
 
-    height:38px;
+    height:42px;
 
     border:none;
 
     border-radius:50%;
 
-    background:transparent;
-
-    color:var(--wine);
-
-    font-size:24px;
-
     cursor:pointer;
 
+    background:#ffffff;
+
+    color:#a57a24;
+
+    font-size:18px;
+
     transition:.35s ease;
+
+    box-shadow:
+
+        0 8px 22px rgba(0,0,0,.10);
 
 }
 
@@ -144,60 +187,121 @@
 
     transform:rotate(90deg);
 
-    color:var(--gold);
+    background:#c69b45;
+
+    color:#fff;
 
 }
 
-/* ==========================================================
-   TITLE
-========================================================== */
 
-.popup-card h2{
+/* ===================================================
+   HEADER
+=================================================== */
+
+.popup-header{
+
+    text-align:center;
+
+    margin-bottom:34px;
+
+}
+
+.popup-tag{
 
     margin:0;
 
-    text-align:center;
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:1rem;
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+    color:#b28a34;
+
+}
+
+.popup-header h2{
+
+    margin:12px 0 0;
 
     font-family:"Alex Brush",cursive;
 
-    font-size:50px;
+    font-size:clamp(3.4rem,6vw,5rem);
 
     font-weight:400;
 
-    color:var(--gold);
+    line-height:1;
+
+    color:#b5872d;
 
 }
 
-/* ==========================================================
-   SUBTITLE
-========================================================== */
+.popup-header h3{
 
-.popup-subtitle{
+    margin-top:-8px;
 
-    margin:12px 0 30px;
-
-    text-align:center;
+    margin-bottom:18px;
 
     font-family:"Cormorant Garamond",serif;
 
-    font-size:20px;
+    font-size:2rem;
 
-    line-height:1.6;
+    font-weight:600;
 
-    color:var(--text);
+    letter-spacing:2px;
+
+    color:#7b6242;
+
+}
+
+.popup-divider{
+
+    display:block;
+
+    margin:0 auto 18px;
+
+    width:170px;
 
 }
 
-.popup-subtitle strong{
+.popup-family{
 
-    color:var(--wine);
+    margin:0;
 
-    font-weight:700;
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:1.25rem;
+
+    font-style:italic;
+
+    color:#8a6d3b;
 
 }
-/* ==========================================================
+
+.popup-subtitle{
+
+    margin-top:12px;
+
+    font-family:"Poppins",sans-serif;
+
+    font-size:.95rem;
+
+    color:#777;
+
+}
+
+.popup-subtitle span{
+
+    color:#b5872d;
+
+    font-weight:600;
+
+}
+/* ===================================================
    FORM
-========================================================== */
+=================================================== */
 
 .rsvp-form{
 
@@ -205,13 +309,9 @@
 
     flex-direction:column;
 
-    gap:22px;
+    gap:28px;
 
 }
-
-/* ==========================================================
-   FORM GROUP
-========================================================== */
 
 .form-group{
 
@@ -219,161 +319,161 @@
 
     flex-direction:column;
 
-    gap:8px;
-
 }
-
-/* ==========================================================
-   LABEL
-========================================================== */
 
 .form-group label{
 
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:10px;
+
     font-family:"Cormorant Garamond",serif;
 
-    font-size:19px;
+    font-size:1.25rem;
 
     font-weight:600;
 
-    color:var(--text);
+    color:#6d5636;
 
-    line-height:1.45;
+    letter-spacing:.3px;
+
+}
+
+.required{
+
+    margin-left:6px;
+
+    color:#d6a128;
+
+    font-size:1rem;
 
 }
 
 .optional{
 
-    margin-left:6px;
+    font-family:"Poppins",sans-serif;
 
-    font-size:14px;
+    font-size:.72rem;
 
     font-weight:500;
 
-    color:var(--gold);
+    letter-spacing:1px;
 
-    opacity:.85;
+    text-transform:uppercase;
+
+    color:#b89b63;
 
 }
 
-/* ==========================================================
-   INPUTS
-========================================================== */
 
-.form-group input,
-.form-group select,
-.form-group textarea{
+/* ===================================================
+   INPUTS
+=================================================== */
+
+.rsvp-form input,
+
+.rsvp-form textarea,
+
+.rsvp-form select{
 
     width:100%;
 
-    padding:14px 16px;
+    padding:15px 18px;
 
-    border:1px solid var(--border);
+    border-radius:16px;
 
-    border-radius:14px;
+    border:1px solid rgba(198,155,69,.28);
 
-    background:white;
+    background:#fffdf9;
 
-    font-family:"Cormorant Garamond",serif;
+    font-family:"Poppins",sans-serif;
 
-    font-size:17px;
+    font-size:.96rem;
 
-    color:var(--text);
+    color:#4d4337;
 
     outline:none;
 
-    transition:
-
-        border-color .25s ease,
-
-        box-shadow .25s ease,
-
-        transform .25s ease;
+    transition:all .3s ease;
 
     box-sizing:border-box;
 
 }
 
-/* ==========================================================
-   TEXTAREA
-========================================================== */
-
-.form-group textarea{
-
-    min-height:110px;
+.rsvp-form textarea{
 
     resize:vertical;
 
-}
+    min-height:120px;
 
-/* ==========================================================
-   PLACEHOLDER
-========================================================== */
-
-.form-group input::placeholder,
-.form-group textarea::placeholder{
-
-    color:#b49b89;
-
-    opacity:1;
+    line-height:1.7;
 
 }
 
-/* ==========================================================
-   FOCUS
-========================================================== */
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus{
-
-    border-color:var(--gold);
-
-    box-shadow:
-
-        0 0 0 3px rgba(199,154,57,.15);
-
-}
-
-/* ==========================================================
-   SELECT
-========================================================== */
-
-.form-group select{
+.rsvp-form select{
 
     cursor:pointer;
 
 }
 
-/* ==========================================================
-   TEXTAREA SCROLLBAR
-========================================================== */
+.rsvp-form input::placeholder,
 
-.form-group textarea::-webkit-scrollbar{
+.rsvp-form textarea::placeholder{
 
-    width:6px;
+    color:#b3a899;
 
 }
 
-.form-group textarea::-webkit-scrollbar-thumb{
 
-    background:var(--gold);
+/* ===================================================
+   FOCUS EFFECT
+=================================================== */
 
-    border-radius:20px;
+.rsvp-form input:focus,
+
+.rsvp-form textarea:focus,
+
+.rsvp-form select:focus{
+
+    border-color:#c69b45;
+
+    background:#ffffff;
+
+    box-shadow:
+
+        0 0 0 4px rgba(198,155,69,.12),
+
+        0 10px 24px rgba(198,155,69,.12);
+
+    transform:translateY(-1px);
 
 }
 
-/* ==========================================================
-   DIVIDER BETWEEN QUESTIONS
-========================================================== */
 
-.form-group:not(:last-child){
+/* ===================================================
+   QUESTION TITLE
+=================================================== */
 
-    padding-bottom:2px;
+.question-title{
+
+    margin:0 0 12px;
+
+    font-family:"Alex Brush",cursive;
+
+    font-size:2rem;
+
+    font-weight:400;
+
+    color:#b5872d;
 
 }
-/* ==========================================================
-   RADIO GROUP
-========================================================== */
+/* ===================================================
+   ATTENDANCE CARDS
+=================================================== */
 
 .radio-group{
 
@@ -381,63 +481,128 @@
 
     flex-direction:column;
 
-    gap:14px;
+    gap:16px;
+
+    margin-top:8px;
 
 }
 
-.radio-group label{
+.radio-card{
+
+    position:relative;
 
     display:flex;
 
-    align-items:center;
+    align-items:flex-start;
 
     gap:14px;
 
+    padding:18px 20px;
+
+    border:1px solid rgba(198,155,69,.28);
+
+    border-radius:18px;
+
+    background:linear-gradient(
+        180deg,
+        #ffffff,
+        #fdf9f2
+    );
+
     cursor:pointer;
 
-    font-family:"Cormorant Garamond",serif;
+    transition:all .35s ease;
 
-    font-size:17px;
-
-    font-weight:500;
-
-    color:var(--text);
-
-    transition:.3s ease;
+    overflow:hidden;
 
 }
 
-/* Hide browser radio */
 
-.radio-group input[type="radio"]{
+/* Gold Hover Glow */
+
+.radio-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+        135deg,
+        rgba(198,155,69,.08),
+        transparent 65%
+    );
+
+    opacity:0;
+
+    transition:opacity .35s ease;
+
+    pointer-events:none;
+
+}
+
+.radio-card:hover{
+
+    transform:translateY(-3px);
+
+    border-color:#c69b45;
+
+    box-shadow:
+
+        0 12px 28px rgba(198,155,69,.15);
+
+}
+
+.radio-card:hover::before{
+
+    opacity:1;
+
+}
+
+
+/* Hide Native Radio */
+
+.radio-card input[type="radio"]{
 
     appearance:none;
 
     -webkit-appearance:none;
 
+    flex-shrink:0;
+
     width:22px;
 
     height:22px;
 
-    border:2px solid var(--gold);
+    margin-top:2px;
 
     border-radius:50%;
 
-    background:white;
+    border:2px solid #c69b45;
 
-    display:grid;
+    background:#fff;
 
-    place-items:center;
+    position:relative;
 
     cursor:pointer;
 
-    transition:.25s ease;
+    transition:all .3s ease;
 
 }
 
-.radio-group input[type="radio"]::before{
+
+/* Inner Gold Dot */
+
+.radio-card input[type="radio"]::after{
 
     content:"";
+
+    position:absolute;
+
+    top:50%;
+
+    left:50%;
 
     width:10px;
 
@@ -445,87 +610,148 @@
 
     border-radius:50%;
 
-    transform:scale(0);
+    background:#c69b45;
 
-    transition:.25s ease;
+    transform:translate(-50%,-50%) scale(0);
 
-    background:var(--wine);
-
-}
-
-.radio-group input[type="radio"]:checked{
-
-    border-color:var(--wine);
+    transition:transform .25s ease;
 
 }
 
-.radio-group input[type="radio"]:checked::before{
 
-    transform:scale(1);
+/* Selected */
+
+.radio-card input[type="radio"]:checked{
+
+    background:#fffdf8;
+
+    border-color:#b5872d;
 
 }
 
-.radio-group label:hover{
+.radio-card input[type="radio"]:checked::after{
 
-    color:var(--gold);
+    transform:translate(-50%,-50%) scale(1);
 
 }
 
-/* ==========================================================
+
+/* Radio Text */
+
+.radio-card span{
+
+    flex:1;
+
+    font-family:"Cormorant Garamond", serif;
+
+    font-size:1.02rem;
+
+    font-weight:500;
+
+    line-height:1.8;
+
+    color:#6f5a3d;
+
+    transition:all .3s ease;
+
+}
+
+
+/* Selected Card */
+
+.radio-card:has(input:checked){
+
+    border-color:#c69b45;
+
+    background:linear-gradient(
+        180deg,
+        #fffdf9,
+        #f8f0df
+    );
+
+    box-shadow:
+        0 14px 35px rgba(198,155,69,.18);
+
+}
+
+.radio-card input:checked + span{
+
+    color:#9c6f1f;
+
+    font-weight:600;
+
+}
+
+
+/* Fallback for browsers without :has() */
+
+.radio-card input:checked + span{
+
+    color:#8a6725;
+
+    font-weight:600;
+
+}
+/* ===================================================
    SUBMIT BUTTON
-========================================================== */
+=================================================== */
 
 .submit-btn{
 
     position:relative;
 
-    overflow:hidden;
-
-    margin-top:10px;
-
     width:100%;
+
+    margin-top:12px;
+
+    padding:18px 24px;
 
     border:none;
 
-    border-radius:50px;
-
-    padding:16px;
+    border-radius:999px;
 
     cursor:pointer;
 
+    overflow:hidden;
+
     font-family:"Cormorant Garamond",serif;
 
-    font-size:19px;
+    font-size:1.25rem;
 
-    font-weight:600;
+    font-weight:700;
 
-    color:white;
+    letter-spacing:.8px;
+
+    color:#fff;
 
     background:linear-gradient(
         135deg,
-        var(--wine),
-        var(--wine-dark)
+        #c69b45 0%,
+        #d8b45d 35%,
+        #b8862f 70%,
+        #9f7424 100%
     );
 
-    transition:.35s ease;
-
-}
-
-.submit-btn:hover{
-
-    transform:translateY(-3px);
-
     box-shadow:
+        0 14px 35px rgba(198,155,69,.30);
 
-        0 14px 28px rgba(141,36,53,.25);
+    transition:all .35s ease;
+
+}
+
+
+/* Button Text */
+
+.submit-btn span{
+
+    position:relative;
+
+    z-index:2;
 
 }
 
-.submit-btn:active{
 
-    transform:translateY(0);
-
-}
+/* Gold Shine */
 
 .submit-btn::before{
 
@@ -537,41 +763,91 @@
 
     left:-120%;
 
-    width:90px;
+    width:70%;
 
     height:100%;
 
     background:linear-gradient(
-
         90deg,
-
         transparent,
-
-        rgba(255,255,255,.45),
-
+        rgba(255,255,255,.55),
         transparent
-
     );
+
+    transform:skewX(-25deg);
+
+}
+
+
+/* Hover */
+
+.submit-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 22px 45px rgba(198,155,69,.38);
 
 }
 
 .submit-btn:hover::before{
 
-    animation:shine .9s linear;
+    animation:buttonShine .9s ease;
 
 }
 
-/* ==========================================================
-   ANIMATIONS
-========================================================== */
 
-@keyframes popup{
+/* Click */
+
+.submit-btn:active{
+
+    transform:translateY(-1px) scale(.98);
+
+}
+
+
+/* Focus */
+
+.submit-btn:focus-visible{
+
+    outline:none;
+
+    box-shadow:
+
+        0 0 0 5px rgba(198,155,69,.18),
+
+        0 16px 40px rgba(198,155,69,.30);
+
+}
+
+
+/* ===================================================
+   ANIMATIONS
+=================================================== */
+
+@keyframes fadeOverlay{
 
     from{
 
         opacity:0;
 
-        transform:translateY(35px) scale(.92);
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+@keyframes popupIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px) scale(.94);
 
     }
 
@@ -585,23 +861,7 @@
 
 }
 
-@keyframes fadeIn{
-
-    from{
-
-        opacity:0;
-
-    }
-
-    to{
-
-        opacity:1;
-
-    }
-
-}
-
-@keyframes shine{
+@keyframes buttonShine{
 
     from{
 
@@ -611,37 +871,22 @@
 
     to{
 
-        left:140%;
+        left:150%;
 
     }
 
 }
+/* ===================================================
+   MOBILE RESPONSIVE
+=================================================== */
 
-/* ==========================================================
-   TABLET
-========================================================== */
-
-@media (max-width:900px){
-
-    .popup-card{
-
-        width:min(92vw,460px);
-
-        padding:30px 26px;
-
-    }
-
-}
-
-/* ==========================================================
-   MOBILE
-========================================================== */
-
-@media (max-width:768px){
+@media (max-width: 768px){
 
     .popup-overlay{
 
         padding:16px;
+
+        align-items:flex-end;
 
     }
 
@@ -649,99 +894,242 @@
 
         width:100%;
 
-        max-width:380px;
+        max-height:92vh;
 
-        max-height:88vh;
+        border-radius:28px 28px 0 0;
 
-        padding:26px 20px;
+        padding:40px 24px 30px;
 
-        border-radius:22px;
+    }
+
+    .popup-card::before{
+
+        inset:10px;
+
+        border-radius:20px;
 
     }
 
     .popup-close{
 
-        top:14px;
+        top:16px;
 
-        right:14px;
+        right:16px;
 
-        width:34px;
+        width:38px;
 
-        height:34px;
+        height:38px;
 
-        font-size:22px;
+        font-size:16px;
 
     }
 
-    .popup-card h2{
+    .popup-header{
 
-        font-size:42px;
+        margin-bottom:28px;
+
+    }
+
+    .popup-tag{
+
+        font-size:.85rem;
+
+        letter-spacing:3px;
+
+    }
+
+    .popup-header h2{
+
+        font-size:clamp(2.8rem,11vw,4rem);
+
+    }
+
+    .popup-header h3{
+
+        font-size:1.55rem;
+
+        margin-bottom:14px;
+
+    }
+
+    .popup-divider{
+
+        width:140px;
+
+        margin-bottom:16px;
+
+    }
+
+    .popup-family{
+
+        font-size:1.05rem;
 
     }
 
     .popup-subtitle{
 
-        font-size:17px;
-
-        margin-bottom:24px;
+        font-size:.88rem;
 
     }
 
     .rsvp-form{
 
-        gap:18px;
+        gap:22px;
 
     }
 
     .form-group label{
 
-        font-size:17px;
+        font-size:1.08rem;
+
+        line-height:1.5;
 
     }
 
     .optional{
 
-        display:block;
-
-        margin-top:3px;
-
-        margin-left:0;
+        font-size:.65rem;
 
     }
 
-    .form-group input,
-    .form-group select,
-    .form-group textarea{
+    .rsvp-form input,
 
-        padding:13px 14px;
+    .rsvp-form textarea,
 
-        font-size:16px;
+    .rsvp-form select{
 
-    }
+        padding:14px 16px;
 
-    .form-group textarea{
-
-        min-height:100px;
+        font-size:.92rem;
 
     }
 
-    .radio-group{
+    .question-title{
+
+        font-size:1.7rem;
+
+    }
+
+    .radio-card{
+
+        padding:16px;
 
         gap:12px;
 
     }
 
-    .radio-group label{
+    .radio-card span{
 
-        font-size:16px;
+        font-size:.9rem;
 
-        align-items:flex-start;
+        line-height:1.6;
 
     }
 
     .submit-btn{
 
-        font-size:17px;
+        font-size:1.1rem;
+
+        padding:16px;
+
+    }
+
+}
+
+
+/* ===================================================
+   SMALL PHONES
+=================================================== */
+
+@media (max-width: 480px){
+
+    .popup-overlay{
+
+        padding:0;
+
+    }
+
+    .popup-card{
+
+        border-radius:24px 24px 0 0;
+
+        padding:34px 18px 24px;
+
+    }
+
+    .popup-header h2{
+
+        font-size:2.6rem;
+
+    }
+
+    .popup-header h3{
+
+        font-size:1.35rem;
+
+    }
+
+    .popup-family{
+
+        font-size:1rem;
+
+    }
+
+    .popup-divider{
+
+        width:120px;
+
+    }
+
+    .popup-subtitle{
+
+        font-size:.82rem;
+
+    }
+
+    .form-group label{
+
+        font-size:1rem;
+
+    }
+
+    .radio-card{
+
+        padding:14px;
+
+    }
+
+    .radio-card input[type="radio"]{
+
+        width:20px;
+
+        height:20px;
+
+    }
+
+    .radio-card input[type="radio"]::after{
+
+        width:8px;
+
+        height:8px;
+
+    }
+
+    .radio-card span{
+
+        font-size:.86rem;
+
+    }
+
+    .rsvp-form textarea{
+
+        min-height:100px;
+
+    }
+
+    .submit-btn{
+
+        font-size:1rem;
 
         padding:15px;
 
@@ -749,53 +1137,40 @@
 
 }
 
-/* ==========================================================
-   SMALL PHONES
-========================================================== */
 
-@media (max-width:390px){
+/* ===================================================
+   SMOOTH SCROLL
+=================================================== */
 
-    .popup-overlay{
+.popup-card{
 
-        padding:12px;
+    scroll-behavior:smooth;
 
-    }
+}
 
-    .popup-card{
+.rsvp-form input,
+.rsvp-form textarea,
+.rsvp-form select,
+.submit-btn{
 
-        padding:22px 16px;
+    -webkit-tap-highlight-color:transparent;
 
-    }
+}
 
-    .popup-card h2{
 
-        font-size:36px;
+/* ===================================================
+   ACCESSIBILITY
+=================================================== */
 
-    }
+@media (prefers-reduced-motion: reduce){
 
-    .popup-subtitle{
+    *{
 
-        font-size:15px;
+        animation:none !important;
 
-    }
+        transition:none !important;
 
-    .form-group label{
-
-        font-size:16px;
-
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea{
-
-        font-size:15px;
-
-    }
-
-    .submit-btn{
-
-        font-size:16px;
+        scroll-behavior:auto !important;
 
     }
 
