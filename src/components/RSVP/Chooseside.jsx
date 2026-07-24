@@ -1,4 +1,4 @@
-import "./ChooseSide.css";
+import "./Chooseside.css";
 
 import { motion, AnimatePresence } from "framer-motion";
 
