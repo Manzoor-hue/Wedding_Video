@@ -143,32 +143,6 @@ export default function Journey() {
 
       : EVENTS.length * 170;
 
-  const firstMarker =
-
-    positions.length
-
-      ? positions[0]
-
-      : 50;
-
-  const lastMarker =
-
-    positions.length
-
-      ? positions[positions.length - 1]
-
-      : 50;
-
-  const flowerY =
-
-    firstMarker +
-
-    (lastMarker - firstMarker) *
-
-    progress;
-
-  const fillHeight = flowerY;
-
   const isMarkerActive = (index) => {
 
     if (!positions.length) return false;
@@ -182,176 +156,153 @@ export default function Journey() {
     return progress >= markerProgress;
 
   };
-  return (
-  <section
-    className="journey"
-    ref={sectionRef}
-  >
+    return (
 
-    {/* Paper Background */}
+    <section
+      className="journey"
+      ref={sectionRef}
+    >
 
-    <img
-      src="/images/decorations/paper.webp"
-      className="paper-bg"
-      alt=""
-    />
+      {/* Paper Background */}
 
-    <div className="journey-container">
+      <img
+        src="/images/decorations/paper.webp"
+        className="paper-bg"
+        alt=""
+      />
 
-      {/* ===============================
-          HEADING
-      =============================== */}
+      <div className="journey-container">
 
-      <motion.div
-        className="journey-header"
-        initial={{
-          opacity: 0,
-          y: 40,
-        }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-        }}
-        viewport={{
-          once: true,
-        }}
-        transition={{
-          duration: .8,
-        }}
-      >
-
-        <h2 className="journey-title">
-
-          Schedule of Events
-
-        </h2>
-
-        <img
-          src="/images/decorations/gold-divider.webp"
-          className="journey-divider"
-          alt=""
-        />
-
-      </motion.div>
-
-      {/* ===============================
-          TIMELINE
-      =============================== */}
-
-      <div
-        ref={timelineRef}
-        className="timeline-wrapper"
-        style={{
-          height: timelineHeight,
-        }}
-      >
-
-        <div className="timeline-line" />
+        {/* ===============================
+            HEADING
+        =============================== */}
 
         <motion.div
-          className="timeline-fill"
-          animate={{
-            height: fillHeight,
+          className="journey-header"
+          initial={{
+            opacity: 0,
+            y: 40,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
           }}
           transition={{
-            duration: .08,
-            ease: "linear",
+            duration: .8,
           }}
-        />
+        >
 
-        <motion.img
-          src="/images/decorations/timeline-rose.webp"
-          className="timeline-rose"
-          alt=""
-          animate={{
-            y: flowerY - 26,
+          <h2 className="journey-title">
+
+            Schedule of Events
+
+          </h2>
+
+          <img
+            src="/images/decorations/gold-divider.webp"
+            className="journey-divider"
+            alt=""
+          />
+
+        </motion.div>
+
+        {/* ===============================
+            TIMELINE
+        =============================== */}
+
+        <div
+          ref={timelineRef}
+          className="timeline-wrapper"
+          style={{
+            height: timelineHeight,
           }}
-          transition={{
-            duration: .08,
-            ease: "linear",
-          }}
-        />
+        >
 
-        <div className="timeline-events">
+          {/* Background Line */}
 
-          {EVENTS.map((event, index) => (
+          <div className="timeline-line" />
 
-            <motion.div
-              key={event.id}
-              className="timeline-item"
-              initial={{
-                opacity: 0,
-                y: 40,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{
-                amount: .4,
-              }}
-              transition={{
-                duration: .6,
-                delay: index * .15,
-              }}
-            >
+          {/* Full Gold Line */}
 
-              {/* LEFT */}
+          <div className="timeline-fill" />
 
-              <div className="event-time">
+          <div className="timeline-events">
+                        {EVENTS.map((event, index) => (
 
-                {event.time}
-
-              </div>
-
-              {/* CENTER */}
-
-              <div
-                className="timeline-marker"
-                ref={(el) =>
-                  markerRefs.current[index] = el
-                }
+              <motion.div
+                key={event.id}
+                className="timeline-item"
+                initial={{
+                  opacity: 0,
+                  y: 40,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                viewport={{
+                  amount: .4,
+                }}
+                transition={{
+                  duration: .6,
+                  delay: index * .15,
+                }}
               >
 
+                {/* LEFT */}
+
+                <div className="event-time">
+
+                  {event.time}
+
+                </div>
+
+                {/* CENTER */}
+
                 <div
-                  className={`diamond ${
-                    isMarkerActive(index)
-                      ? "active"
-                      : ""
-                  }`}
-                />
+                  className="timeline-marker"
+                  ref={(el) =>
+                    markerRefs.current[index] = el
+                  }
+                >
 
-              </div>
+                <div className="diamond active" />
 
-              {/* RIGHT */}
+                </div>
 
-              <div className="event-content">
+                {/* RIGHT */}
 
-                <h3 className="event-title">
+                <div className="event-content">
 
-                  {event.title}
+                  <h3 className="event-title">
 
-                </h3>
+                    {event.title}
 
-              </div>
+                  </h3>
 
-            </motion.div>
+                </div>
 
-          ))}
+              </motion.div>
+
+            ))}
+
+          </div>
 
         </div>
 
       </div>
 
-    </div>
+      {/* Background Glow */}
 
-    {/* Background Glow */}
+      <div className="journey-bg-left" />
 
-    <div className="journey-bg-left" />
+      <div className="journey-bg-right" />
 
-    <div className="journey-bg-right" />
+    </section>
 
-  </section>
-);
+  );
 
 }

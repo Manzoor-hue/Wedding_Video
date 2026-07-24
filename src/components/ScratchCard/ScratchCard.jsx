@@ -459,9 +459,13 @@ export default function ScratchCard() {
           </defs>
 
         </svg>
-                <h2 className="scratch-title">
-          Save the Date
+        <h2 className="scratch-title">
+          Forever Start Here
         </h2>
+        
+        <h3 className="scratch-title1">
+          Join us as our story unfolds
+        </h3>    
 
         <div className="divider">
 

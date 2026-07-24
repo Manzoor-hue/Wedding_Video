@@ -1,15 +1,29 @@
 /* ==========================================================
+   GOOGLE FONTS
+========================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:wght@400;500;600&display=swap");
+
+/* ==========================================================
    JOURNEY SECTION
 ========================================================== */
 
 .journey{
+
     position:relative;
+
     display:flex;
+
     justify-content:center;
+
     align-items:center;
+
     overflow:hidden;
+
     padding:140px 20px;
+
     background:#f6efe6;
+
 }
 
 /* ==========================================================
@@ -17,17 +31,33 @@
 ========================================================== */
 
 .paper-bg{
+
     position:absolute;
+
     top:50%;
+
     left:50%;
+
     transform:translate(-50%,-50%);
+
     width:min(900px,95vw);
+
     max-width:900px;
+
     height:auto;
+
     z-index:0;
+
     user-select:none;
+
     pointer-events:none;
-    filter:drop-shadow(0 20px 40px rgba(0,0,0,.08));
+
+    filter:drop-shadow(
+        0 20px 40px rgba(0,0,0,.08)
+    );
+
+    animation:paperFloat 6s ease-in-out infinite;
+
 }
 
 /* ==========================================================
@@ -35,11 +65,17 @@
 ========================================================== */
 
 .journey-container{
+
     position:relative;
+
     z-index:2;
+
     width:100%;
+
     max-width:640px;
+
     margin:0 auto;
+
 }
 
 /* ==========================================================
@@ -47,273 +83,32 @@
 ========================================================== */
 
 .journey-header{
+
+    position:relative;
+
     text-align:center;
+
     margin-bottom:90px;
+
 }
 
 .journey-title{
+
     margin:0;
-    font-family:"Cormorant Garamond",serif;
+
+    font-family:"Alex Brush",cursive;
+
     font-size:3.8rem;
-    font-weight:500;
-    color:#7d6555;
+
+    font-weight:400;
+
+    color:#b8862f;
+
     letter-spacing:.04em;
-    line-height:1.1;
-}
 
-.journey-divider{
-    display:block;
-    width:170px;
-    margin:20px auto 0;
-}
-
-/* ==========================================================
-   TIMELINE WRAPPER
-========================================================== */
-
-.timeline-wrapper{
-    position:relative;
-    width:100%;
-    max-width:500px;
-    margin:0 auto;
-}
-
-/* ==========================================================
-   EVENTS
-========================================================== */
-
-.timeline-events{
-    position:relative;
-    display:flex;
-    flex-direction:column;
-    gap:62px;
-    width:100%;
-    padding-bottom:30px;
-}
-/* ==========================================================
-   TIMELINE LINE
-========================================================== */
-
-.timeline-line{
-    position:absolute;
-    top:0;
-    bottom:0;
-    left:50%;
-    transform:translateX(-50%);
-    width:1px;
-    background:#d6c8bb;
-    z-index:1;
-}
-
-.timeline-fill{
-    position:absolute;
-    top:0;
-    left:50%;
-    transform:translateX(-50%);
-    width:2px;
-    height:0;
-    background:linear-gradient(
-        to bottom,
-        #f6e5b2 0%,
-        #d8b15a 45%,
-        #9b7437 100%
-    );
-    transform-origin:top;
-    border-radius:2px;
-    z-index:2;
-}
-
-/* ==========================================================
-   MOVING ROSE
-========================================================== */
-
-.timeline-rose{
-    position:absolute;
-    left:50%;
-    width:38px;
-    transform:translateX(-50%);
-    z-index:20;
-    pointer-events:none;
-    filter:drop-shadow(
-        0 4px 10px rgba(0,0,0,.18)
-    );
-}
-
-/* ==========================================================
-   EVENT ROW
-========================================================== */
-
-.timeline-item{
-
-    display:grid;
-
-    grid-template-columns:
-        80px
-        36px
-        220px;
-
-    justify-content:center;
-
-    align-items:center;
-
-    width:100%;
-
-    min-height:48px;
-
-}
-
-/* ==========================================================
-   TIME
-========================================================== */
-
-.event-time{
-
-    text-align:right;
-
-    padding-right:14px;
-
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:1.45rem;
-
-    font-weight:500;
-
-    color:#7d6757;
-
-    line-height:1;
-
-    letter-spacing:.02em;
-
-}
-
-/* ==========================================================
-   MARKER
-========================================================== */
-
-.timeline-marker{
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    position:relative;
-
-    z-index:5;
-
-}
-
-.diamond{
-
-    width:8px;
-
-    height:8px;
-
-    background:#a68c79;
-
-    transform:rotate(45deg);
+    line-height:1.08;
 
     transition:.35s ease;
-
-}
-
-.diamond.active{
-
-    background:#c79d46;
-
-    transform:rotate(45deg) scale(1.35);
-
-    box-shadow:
-        0 0 10px rgba(199,157,70,.45);
-
-}
-
-/* ==========================================================
-   EVENT CONTENT
-========================================================== */
-
-.event-content{
-
-    padding-left:16px;
-
-    display:flex;
-
-    align-items:center;
-
-}
-
-.event-title{
-
-    margin:0;
-
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:1.5rem;
-
-    font-weight:500;
-
-    color:#7a6556;
-
-    line-height:1.15;
-
-}
-/* ==========================================================
-   LUXURY ANIMATIONS
-========================================================== */
-
-.timeline-item{
-
-    transition:
-        transform .45s ease,
-        opacity .45s ease;
-
-}
-
-.timeline-item:hover{
-
-    transform:translateY(-4px);
-
-}
-
-.timeline-item:hover .event-title{
-
-    color:#b48944;
-
-    letter-spacing:.03em;
-
-}
-
-.timeline-item:hover .event-time{
-
-    color:#b48944;
-
-}
-
-.timeline-item:hover .diamond{
-
-    background:#d4af37;
-
-    transform:rotate(45deg) scale(1.5);
-
-    box-shadow:
-        0 0 12px rgba(212,175,55,.35);
-
-}
-
-/* ==========================================================
-   HEADER
-========================================================== */
-
-.journey-header{
-
-    position:relative;
-
-}
-
-.journey-title{
-
-    transition:.4s ease;
 
 }
 
@@ -323,16 +118,117 @@
 
 }
 
-/* ==========================================================
-   PAPER GLOW
-========================================================== */
+.journey-divider{
 
-.paper-bg{
+    display:block;
 
-    animation:
-        paperFloat 6s ease-in-out infinite;
+    width:170px;
+
+    margin:22px auto 0;
 
 }
+
+/* ==========================================================
+   TIMELINE WRAPPER
+========================================================== */
+
+.timeline-wrapper{
+
+    position:relative;
+
+    width:100%;
+
+    max-width:500px;
+
+    margin:0 auto;
+
+}
+
+/* ==========================================================
+   TIMELINE EVENTS
+========================================================== */
+
+.timeline-events{
+
+    position:relative;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:62px;
+
+    width:100%;
+
+    padding-bottom:40px;
+
+}
+
+/* ==========================================================
+   BACKGROUND LINE
+========================================================== */
+
+.timeline-line{
+
+    position:absolute;
+
+    top:0;
+
+    bottom:0;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:2px;
+
+    background:#e8dccb;
+
+    border-radius:20px;
+
+    z-index:1;
+
+}
+
+/* ==========================================================
+   GOLD TIMELINE
+========================================================== */
+
+.timeline-fill{
+
+    position:absolute;
+
+    top:0;
+
+    bottom:0;
+
+    left:50%;
+
+    width:2px;
+
+    transform:translateX(-50%);
+
+    border-radius:20px;
+
+    background:linear-gradient(
+        to bottom,
+        #f7e6b3 0%,
+        #e8c97b 18%,
+        #d4af37 45%,
+        #c79a39 70%,
+        #b8860b 100%
+    );
+
+    box-shadow:
+        0 0 8px rgba(212,175,55,.18);
+
+    z-index:2;
+
+}
+
+/* ==========================================================
+   PAPER FLOAT
+========================================================== */
 
 @keyframes paperFloat{
 
@@ -358,46 +254,219 @@
     }
 
 }
-
 /* ==========================================================
-   ROSE
+   TIMELINE ITEM
 ========================================================== */
 
-.timeline-rose{
+.timeline-item{
 
-    animation:
-        roseFloat 3.5s ease-in-out infinite;
+    display:grid;
 
-}
+    grid-template-columns:
+        80px
+        36px
+        220px;
 
-@keyframes roseFloat{
+    justify-content:center;
 
-    0%{
+    align-items:center;
 
-        transform:
-            translateX(-50%)
-            translateY(0);
+    width:100%;
 
-    }
+    min-height:54px;
 
-    50%{
-
-        transform:
-            translateX(-50%)
-            translateY(-5px);
-
-    }
-
-    100%{
-
-        transform:
-            translateX(-50%)
-            translateY(0);
-
-    }
+    transition:
+        transform .45s ease,
+        opacity .45s ease;
 
 }
 
+.timeline-item:hover{
+
+    transform:translateY(-4px);
+
+}
+
+/* ==========================================================
+   EVENT TIME
+========================================================== */
+
+.event-time{
+
+    text-align:right;
+
+    padding-right:16px;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:1.45rem;
+
+    font-weight:500;
+
+    color:#7d6757;
+
+    line-height:1;
+
+    letter-spacing:.02em;
+
+    transition:.35s ease;
+
+}
+
+.timeline-item:hover .event-time{
+
+    color:#b48944;
+
+}
+
+/* ==========================================================
+   TIMELINE MARKER
+========================================================== */
+
+.timeline-marker{
+
+    position:relative;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:5;
+
+}
+
+/* ==========================================================
+   GOLD DIAMOND
+========================================================== */
+
+.diamond{
+
+    width:12px;
+
+    height:12px;
+
+    background:#b79b85;
+
+    transform:rotate(45deg);
+
+    transition:
+        transform .35s ease,
+        background .35s ease,
+        box-shadow .35s ease;
+
+}
+
+.diamond.active{
+
+    background:linear-gradient(
+        135deg,
+        #f9e7a7,
+        #e8c97b,
+        #d4af37,
+        #b8860b
+    );
+
+    transform:rotate(45deg) scale(1.3);
+
+    box-shadow:
+        0 0 12px rgba(212,175,55,.45),
+        0 0 22px rgba(212,175,55,.25);
+
+}
+
+.timeline-item:hover .diamond{
+
+    background:#e0bc55;
+
+    transform:
+        rotate(45deg)
+        scale(1.5);
+
+    box-shadow:
+        0 0 18px rgba(212,175,55,.55);
+
+}
+
+/* ==========================================================
+   EVENT CONTENT
+========================================================== */
+
+.event-content{
+
+    display:flex;
+
+    align-items:center;
+
+    padding-left:18px;
+
+}
+
+/* ==========================================================
+   EVENT TITLE
+========================================================== */
+
+.event-title{
+
+    margin:0;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:1.5rem;
+
+    font-weight:500;
+
+    color:#7a6556;
+
+    line-height:1.15;
+
+    letter-spacing:.01em;
+
+    transition:
+        color .35s ease,
+        letter-spacing .35s ease;
+
+}
+
+.timeline-item:hover .event-title{
+
+    color:#b48944;
+
+    letter-spacing:.03em;
+
+}
+
+/* ==========================================================
+   SPACING
+========================================================== */
+
+.timeline-item:first-child{
+
+    margin-top:10px;
+
+}
+
+.timeline-item:last-child{
+
+    margin-bottom:12px;
+
+}
+
+/* ==========================================================
+   BETTER TEXT RENDERING
+========================================================== */
+
+.event-time,
+.event-title{
+
+    user-select:none;
+
+    text-rendering:optimizeLegibility;
+
+    -webkit-font-smoothing:antialiased;
+
+}
 /* ==========================================================
    BACKGROUND GLOW
 ========================================================== */
@@ -425,16 +494,15 @@
 
     left:-220px;
 
-    background:
-        radial-gradient(
+    background:radial-gradient(
 
-            circle,
+        circle,
 
-            rgba(212,175,55,.10),
+        rgba(212,175,55,.10),
 
-            transparent 72%
+        transparent 72%
 
-        );
+    );
 
 }
 
@@ -444,55 +512,18 @@
 
     right:-220px;
 
-    background:
-        radial-gradient(
+    background:radial-gradient(
 
-            circle,
+        circle,
 
-            rgba(212,175,55,.08),
+        rgba(212,175,55,.08),
 
-            transparent 72%
+        transparent 72%
 
-        );
-
-}
-
-/* ==========================================================
-   BETTER SPACING
-========================================================== */
-
-.timeline-item:first-child{
-
-    margin-top:8px;
+    );
 
 }
 
-.timeline-item:last-child{
-
-    margin-bottom:8px;
-
-}
-
-.timeline-events{
-
-    padding-bottom:40px;
-
-}
-
-/* ==========================================================
-   BETTER LOOKING TEXT
-========================================================== */
-
-.event-time,
-.event-title{
-
-    user-select:none;
-
-    -webkit-font-smoothing:antialiased;
-
-    text-rendering:optimizeLegibility;
-
-}
 /* ==========================================================
    TABLET
 ========================================================== */
@@ -632,18 +663,9 @@
     }
 
     .timeline-line,
-
     .timeline-fill{
 
         left:79px;
-
-    }
-
-    .timeline-rose{
-
-        left:79px;
-
-        width:28px;
 
     }
 
@@ -709,18 +731,9 @@
     }
 
     .timeline-line,
-
     .timeline-fill{
 
         left:69px;
-
-    }
-
-    .timeline-rose{
-
-        left:69px;
-
-        width:24px;
 
     }
 
@@ -743,11 +756,11 @@
 ========================================================== */
 
 .timeline-item,
-.timeline-rose,
 .timeline-fill,
 .event-title,
 .event-time,
-.paper-bg{
+.paper-bg,
+.diamond{
 
     will-change:transform;
 

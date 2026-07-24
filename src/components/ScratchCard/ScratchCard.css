@@ -1,6 +1,8 @@
 /* ===========================
    SECTION
 =========================== */
+@import url("https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:wght@400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
 
 .scratch-section{
 
@@ -26,13 +28,33 @@
 
     color:#9b7326;
 
-    font-family:"Cormorant Garamond",serif;
+    font-family:"Alex brush",cursive;
 
     font-size:clamp(2.4rem,5vw,3.8rem);
 
     font-weight:600;
 
     letter-spacing:.08em;
+
+}
+
+.scratch-title1{
+
+    margin: 0;
+
+    color: #b8862f;
+
+    font-family: "Alex Brush", cursive;
+
+    font-size: 1.7rem;
+
+    font-weight: 400;
+
+    letter-spacing: 0.02em;
+
+    line-height: 1.15;
+
+    text-align: center;
 
 }
 
@@ -234,7 +256,7 @@
 
     color:#8f7b55;
 
-    font-family:"Cinzel",serif;
+    font-family:"Cormorant Garamond",serif;
 
     font-size:1rem;
 
@@ -477,7 +499,7 @@
     .heart-wrapper{
 
         width:300px;
-
+        font-family:"Cormorant Garamond",serif;
         height:282px;
 
     }
@@ -513,6 +535,7 @@
     .scratch-section{
 
         padding:100px 16px;
+        
 
     }
 
@@ -527,6 +550,7 @@
     .reveal-date{
 
         font-size:1.7rem;
+        font-family:"Cormorant Garamond",serif;
 
     }
 

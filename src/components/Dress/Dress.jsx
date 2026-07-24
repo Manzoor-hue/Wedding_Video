@@ -49,9 +49,8 @@ export default function DressCode() {
             <h2>Gift Preference</h2>
 
             <p>
-              Your presence is our greatest gift. If you wish to bless us further,
-              <br />
-             we would be grateful for your kind contribution.
+              The Greatest gift is sharing this moment with you. Your presence, love              
+             and blessings will make our wedding day truly complete.
             </p>
 
           </div>
